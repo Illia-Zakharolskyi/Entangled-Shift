@@ -2108,13 +2108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc3284ae8f1f6c4cbfcc0a4a118c3cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenuManager
-  gamePanel: {fileID: 0}
-  pauseMenuPanel: {fileID: 1081564715}
-  settingsMenuPanel: {fileID: 1627756128}
-  inventoryPanel: {fileID: 0}
-  _inventoryEvents: {fileID: 0}
-  _events: {fileID: 0}
-  mainMenuSceneName: MainMenu
 --- !u!4 &819145865
 Transform:
   m_ObjectHideFlags: 0
@@ -3042,13 +3035,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc3284ae8f1f6c4cbfcc0a4a118c3cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenuManager
-  gamePanel: {fileID: 0}
-  pauseMenuPanel: {fileID: 1081564715}
-  settingsMenuPanel: {fileID: 1627756128}
-  inventoryPanel: {fileID: 0}
-  _inventoryEvents: {fileID: 0}
-  _events: {fileID: 0}
-  mainMenuSceneName: MainMenu
 --- !u!1 &1117055780
 GameObject:
   m_ObjectHideFlags: 0
@@ -4141,18 +4127,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1782702501690864755, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1938452838}
-    - targetCorrespondingSourceObject: {fileID: 1782702501690864755, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1938452850}
-    - targetCorrespondingSourceObject: {fileID: 1782702501690864755, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1938452849}
-    - targetCorrespondingSourceObject: {fileID: 1782702501690864755, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1938452848}
-    - targetCorrespondingSourceObject: {fileID: 1782702501690864755, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1938452847}
   m_SourcePrefab: {fileID: 100100000, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
 --- !u!1 &1493463523
 GameObject:
@@ -4640,7 +4614,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8c26c0e8f59e84945a1f70fd20594118, type: 2}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5407,21 +5381,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1938452837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f177d7f06c66764db8810da439a289e, type: 3}
+  m_Script: {fileID: 11500000, guid: 1addd5e8b5dd9774a8bad4c3931dd344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnhancedShift.Player.Movement.PlayerJump
   pc: {fileID: 1938452842}
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 64
-  groundCheckRadius: 0.25
-  groundCheckOffset: {x: 0, y: 0.15, z: 0}
-  jumpForce: 5
-  jumpCooldown: 0.15
-  normalHeight: 2
-  jumpHeight: 1.4
-  normalCenter: {x: 0, y: 1, z: 0}
-  resizeSpeed: 15
+  walkSpeed: 3
+  runSpeed: 6
+  airSpeed: 2
+  rotSpeed: 20
+  atkSlow: 0.5
+  hurtSlow: 0.4
+  groundDrag: 5
+  airDrag: 0
 --- !u!114 &1938452839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5431,18 +5402,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1938452837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 705ef096ced796241bcc0e401b7bf40f, type: 3}
+  m_Script: {fileID: 11500000, guid: 53f749261c53e934ab9f28e4310976aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnhancedShift.Player.Movement.PlayerMovement
   pc: {fileID: 1938452842}
-  walkSpeed: 5
-  runSpeed: 6
-  airSpeed: 2
-  rotSpeed: 12
-  atkSlow: 0.5
-  hurtSlow: 0.4
-  groundDrag: 2
-  airDrag: 0
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  groundCheckRadius: 0.25
+  groundCheckOffset: {x: 0, y: 0.25, z: 0}
+  jumpForce: 7
+  jumpCooldown: 0.15
+  normalHeight: 2
+  jumpHeight: 1.4
+  normalCenter: {x: 0, y: 1, z: 0}
+  resizeSpeed: 15
 --- !u!114 &1938452840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5452,10 +5426,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1938452837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bf57205de685c14493f67193732f2e7, type: 3}
+  m_Script: {fileID: 11500000, guid: 436b12b9c307ee34bb74304bcfd2e344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnhancedShift.Player.Health.PlayerHealth
   pc: {fileID: 1938452842}
+  standHeight: 2
+  crouchHeight: 1.2
+  speed: 8
+  ceilingMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &1938452841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5465,11 +5445,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1938452837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f359da49edca83443a6d69430334b1d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a88bb1466e39ef46a0d3d2ff86219bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnhancedShift.Core.Health
-  maxHp: 100
-  godMode: 0
+  pc: {fileID: 1938452842}
 --- !u!114 &1938452842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5479,7 +5458,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1938452837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d767c2dacb8ee34ba029be2df878c14, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e7e7fbf98645b44786921a073974aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnhancedShift.Player.Core.ControllerPlayer
   rb: {fileID: 1938452843}
@@ -5488,7 +5467,7 @@ MonoBehaviour:
   cam: {fileID: 2033513219}
   binds:
   - action: Jump
-    type: 1
+    type: 0
     param: Jump
     keys: 20000000
     enable: 1
@@ -5552,76 +5531,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1438546959266459337, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
   m_PrefabInstance: {fileID: 1453891562}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1938452847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1938452837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48fda499bdb60024bbbe6271f8b90434, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnhancedShift.Player.Animation.PlayerAnimation
-  pc: {fileID: 1938452842}
---- !u!114 &1938452848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1938452837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3a46ea0f1c6baa4a8340f2dc06c9ed4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnhancedShift.Player.Interaction.PlayerInteraction
-  pc: {fileID: 1938452842}
-  distance: 2
-  mask:
-    serializedVersion: 2
-    m_Bits: 0
---- !u!114 &1938452849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1938452837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f7175774718e924ab90884dca810b01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnhancedShift.Player.Combat.PlayerCombat
-  pc: {fileID: 1938452842}
-  weapon: 1
-  range: 2.25
-  radius: 0.35
-  damage: 20
-  delay: 0.6
-  hitMask:
-    serializedVersion: 2
-    m_Bits: 8
---- !u!114 &1938452850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1938452837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54ed004edc9da4f459a46db339760d66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnhancedShift.Player.Movement.PlayerCrouch
-  pc: {fileID: 1938452842}
-  standHeight: 2.17
-  crouchHeight: 1.88
-  speed: 8
-  ceilingMask:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!1 &2004123544
 GameObject:
   m_ObjectHideFlags: 0
