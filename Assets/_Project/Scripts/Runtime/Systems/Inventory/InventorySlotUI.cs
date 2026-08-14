@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler, IPointerClickHandler
 {
@@ -9,6 +9,7 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     [SerializeField] private TextMeshProUGUI amountText;
     [SerializeField] private InventoryEvents _events;
     [SerializeField] private Image[] _frames;
+    [SerializeField] private GameObject _activeFrame;
 
     private int _index;
     private ItemData _data;
@@ -16,6 +17,7 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public Image Icon => icon;
     public int Index => _index;
     public ItemData Data => _data;
+    public GameObject ActiveFrame => _activeFrame;
 
     public void Initialize(int index)
     {
@@ -112,7 +114,10 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         InventorySlotUI draggedSlot = eventData.pointerDrag?.GetComponent<InventorySlotUI>();
 
-        if (draggedSlot == null) return;
+        if (draggedSlot == null)
+        {
+            return;
+        }
 
         if (draggedSlot == this)
         {

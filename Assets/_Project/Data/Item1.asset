@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beacade9d875c7043b067d3cb28c5c54, type: 3}
   m_Name: Item1
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  id: nothing
-  showName: tt
-  icon: {fileID: 21300000, guid: 52cff76fd7a59044ea9a65fb4c42f7d7, type: 3}
-  isStackable: 1
-  maxStackSize: 64
-  description: This is uh test item 1
+  _id: 1
+  _showName: Item 1
+  _icon: {fileID: 21300000, guid: 3432313f2a040bd40a36d7b08ede8d41, type: 3}
+  _isStackable: 1
+  _maxStackSize: 16
+  _description: 1
+  _prefabToEquip: {fileID: 151796841676614247, guid: 1b6983ad704aba0468a32af7f0e63f8d, type: 3}
+  _prefabToDrop: {fileID: 0}

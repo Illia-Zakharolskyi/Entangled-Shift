@@ -1,85 +1,97 @@
-﻿// UnityEngine using directives
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-    public class PlayerMouseLook : MonoBehaviour
+public class PlayerMouseLook : MonoBehaviour
+{
+    [Header("Settings")]
+    [SerializeField] private float sensitivity = 0.1f;
+    [SerializeField] private float smoothTime = 0.05f;
+
+    [Header("Vertical Clamp")]
+    [SerializeField] private float minY = -80f;
+    [SerializeField] private float maxY = 80f;
+
+    [Header("References")]
+    [SerializeField] private Transform playerBody;
+    [SerializeField] private Transform playerCamera;
+
+
+    private float xRotation = 0.0f;
+    private float yRotation = 0.0f;
+
+    private Vector2 mouseDelta;
+    private Vector2 currentDelta;
+    private Vector2 smoothDelta;
+
+    private Actions.PlayerActions playerActions;
+
+    private void Awake()
     {
-        [Header("Settings")]
-        [SerializeField] private float sensitivity = 0.1f;
-        [SerializeField] private float smoothTime = 0.05f;
+        playerActions = new Actions().Player;
+    }
 
-        [Header("Vertical Clamp")]
-        [SerializeField] private float minY = -80f;
-        [SerializeField] private float maxY = 80f;
+    private void OnEnable()
+    {
+        playerActions.Enable();
+        playerActions.ToggleCursor.performed += OnToggleCursor;
+    }
 
-        [Header("References")]
-        [SerializeField] private Transform playerBody;
-        [SerializeField] private Transform playerCamera;
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 
+    private void Update()
+    {
+        if (Cursor.lockState != CursorLockMode.Locked) return;
 
-        private float xRotation = 0.0f;
+        mouseDelta = playerActions.Look.ReadValue<Vector2>();
 
-        private Vector2 mouseDelta;
-        private Vector2 currentDelta;
-        private Vector2 smoothDelta;
+        smoothDelta = Vector2.Lerp(smoothDelta, mouseDelta, smoothTime);
+        currentDelta = smoothDelta * sensitivity;
 
-        private Actions.PlayerActions playerActions;
+        xRotation -= currentDelta.y;
+        xRotation = Mathf.Clamp(xRotation, minY, maxY);
 
-        private void Awake()
+        yRotation += currentDelta.x; // Накапливаем поворот по горизонтали
+
+        // Применяем вращение
+        playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        playerBody.rotation = Quaternion.Euler(0f, yRotation, 0f); // Задаем абсолютный поворот тела
+    }
+
+    private void OnDisable()
+    {
+        playerActions.Disable();
+        playerActions.ToggleCursor.performed -= OnToggleCursor;
+    }
+
+    private void OnToggleCursor(InputAction.CallbackContext context)
+    {
+        Debug.Log("S");
+        if (Cursor.lockState == CursorLockMode.Locked)
         {
-            playerActions = new Actions().Player;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
-
-        private void OnEnable()
-        {
-            playerActions.Enable();
-            playerActions.ToggleCursor.performed += OnToggleCursor;
-        }
-
-        void Start()
+        else
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-
-        private void Update()
-        {
-            if (Cursor.lockState != CursorLockMode.Locked) return;
-
-            mouseDelta = playerActions.Look.ReadValue<Vector2>();
-
-            // згладжування
-            smoothDelta = Vector2.Lerp(smoothDelta, mouseDelta, smoothTime);
-            currentDelta = smoothDelta * sensitivity;
-
-            // Вертикальний поворот камери
-            xRotation -= currentDelta.y;
-            xRotation = Mathf.Clamp(xRotation, minY, maxY);
-
-            playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-
-            // Горизонтальний поворот тіла
-            playerBody.Rotate(Vector3.up * currentDelta.x);
-        }
-
-        private void OnDisable()
-        {
-            playerActions.Disable();
-            playerActions.ToggleCursor.performed -= OnToggleCursor;
-        }
-
-        private void OnToggleCursor(InputAction.CallbackContext context)
-        {
-            if (Cursor.lockState == CursorLockMode.Locked)
-            {
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-            }
-            else
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
-        }
     }
+
+    public void OnCursorUnlock()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void OnCursorLock()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+}

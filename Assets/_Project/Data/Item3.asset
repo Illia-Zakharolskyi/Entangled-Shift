@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beacade9d875c7043b067d3cb28c5c54, type: 3}
+  m_Name: Item3
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  _id: 3
+  _showName: Chest
+  _icon: {fileID: 21300000, guid: df2ce1cdbe59e994d9d7461104ca509f, type: 3}
+  _isStackable: 0
+  _maxStackSize: 0
+  _description: 3
+  _prefabToEquip: {fileID: 461897442164487073, guid: e28aa74d58c7863459676260bdb2fcb9, type: 3}
+  _prefabToDrop: {fileID: 8448089995606757188, guid: c27d4b5f951c9d24fb43f1c9f50fcff3, type: 3}

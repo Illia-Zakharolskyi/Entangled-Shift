@@ -1,41 +1,29 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(BoxCollider))]
 public class WorldItem : MonoBehaviour, IInteractable
 {
-    [SerializeField] private ItemData _data;
-    [SerializeField] private SpriteRenderer _icon;
-    [SerializeField] private ItemEvents _events;
-    [SerializeField] private LayerMask _mask;
-    [SerializeField] private int _amount;
-    [SerializeField] private float _respawnTime = 3f;
+    public ItemData Data { get; private set; }
+    public int Amount { get; private set; }
 
-    public int Amount => _amount;
-    public ItemData Data => _data;
+    private ItemEvents _events;
 
-    private void Awake()
+    public void Init(ItemData data, int amount, ItemEvents events)
     {
-        _icon.sprite = _data.Icon;
-        GetComponent<BoxCollider>().isTrigger = true;
-        GetComponent<BoxCollider>().size = new Vector3(10, 10, 10);
+        Data = data;
+        Amount = amount;
+
+        _events = events;
     }
 
     public void Interact()
     {
-        if (_icon.enabled)
+        if (_events != null)
         {
             _events.InvokeInteractablePick(this);
-            StartCoroutine(RespawnRoutine());
         }
-    }
 
-    private IEnumerator RespawnRoutine()
-    {
-        _icon.enabled = false;
-        yield return new WaitForSeconds(_respawnTime);
-        _icon.enabled = true;
+        Destroy(this.gameObject);
     }
 }
 

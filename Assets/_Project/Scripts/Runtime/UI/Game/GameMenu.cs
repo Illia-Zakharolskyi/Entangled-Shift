@@ -1,5 +1,5 @@
-using UnityEngine;
 using EntangledShift.Runtime.Systems;
+using UnityEngine;
 using UnityEngine.Audio;
 
 namespace EntangledShift.Runtime.UI.Game
@@ -14,7 +14,7 @@ namespace EntangledShift.Runtime.UI.Game
         private const string SFXVolKey = "SFX";
         private const string musicVolKey = "Music";
 
-        void Start()
+        private void Start()
         {
             float savedMasterVolume = PlayerPrefs.GetFloat(MasterVolKey, 0.5f);
             float masterDb = Mathf.Log10(Mathf.Max(0.0001f, savedMasterVolume)) * 20;
@@ -32,7 +32,10 @@ namespace EntangledShift.Runtime.UI.Game
 
         private void OnEnable()
         {
-            if (_backgroundMusic != null) AudioController.Instance.PlayMusic(_backgroundMusic);
+            if (_backgroundMusic != null)
+            {
+                AudioController.Instance.PlayMusic(_backgroundMusic);
+            }
         }
     }
 }

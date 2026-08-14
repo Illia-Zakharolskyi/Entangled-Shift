@@ -7,7 +7,7 @@ namespace EntangledShift.Runtime.Systems
     {
         [SerializeField] private string _sceneToLoad;
 
-        void Start()
+        private void Start()
         {
             if (_sceneToLoad != null)
             {

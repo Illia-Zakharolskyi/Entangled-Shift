@@ -1,10 +1,10 @@
+using EntangledShift.Runtime.Systems;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using EntangledShift.Runtime.Systems;
 using UnityEngine.UI;
 
 namespace EntangledShift.Runtime.UI.Menu
-{ 
+{
     public class UIMenuButtonAudio : MonoBehaviour
     {
         [Header("Refs")]
@@ -21,9 +21,11 @@ namespace EntangledShift.Runtime.UI.Menu
 
                 EventTrigger trigger = btn.gameObject.GetComponent<EventTrigger>();
                 if (trigger == null)
+                {
                     trigger = btn.gameObject.AddComponent<EventTrigger>();
+                }
 
-                EventTrigger.Entry entry = new EventTrigger.Entry();
+                EventTrigger.Entry entry = new();
                 entry.eventID = EventTriggerType.PointerEnter;
                 entry.callback.AddListener((data) => { PlayHover(); });
 
@@ -38,8 +40,8 @@ namespace EntangledShift.Runtime.UI.Menu
                 Debug.Log($"No hover audio for [{this.name}]");
                 return;
             }
-                
-           AudioController.Instance.PlayOneShotSFXSound(_hoverClip);
+
+            AudioController.Instance.PlayOneShotSFXSound(_hoverClip);
         }
 
         public void PlayClick()
@@ -49,8 +51,8 @@ namespace EntangledShift.Runtime.UI.Menu
                 Debug.Log($"No click audio for [{this.name}]");
                 return;
             }
-                
-           AudioController.Instance.PlayOneShotSFXSound(_clickClip);
+
+            AudioController.Instance.PlayOneShotSFXSound(_clickClip);
         }
     }
 }

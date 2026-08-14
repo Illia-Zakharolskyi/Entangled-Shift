@@ -1,8 +1,8 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
-public class GameUIManager: MonoBehaviour
+public class GameUIManager : MonoBehaviour
 {
     [Header("Panel references")]
     [SerializeField] private GameObject gamePanel;
@@ -20,21 +20,38 @@ public class GameUIManager: MonoBehaviour
     private void Update()
     {
         var keyboard = Keyboard.current;
-        if (keyboard == null) return;
+        if (keyboard is null)
+        {
+            return;
+        }
 
-        
         if (keyboard.escapeKey.wasPressedThisFrame || keyboard.pKey.wasPressedThisFrame)
         {
             TogglePause();
         }
     }
 
+    private void OnEnable()
+    {
+        _events.OnInventoryOpen += OnInventoryOpen;
+        _events.OnInventoryClose += OnInventoryClose;
+    }
+
+    private void OnDisable()
+    {
+        _events.OnInventoryOpen -= OnInventoryOpen;
+        _events.OnInventoryClose -= OnInventoryClose;
+    }
+
     public void TogglePause()
     {
         if (isPaused)
+        {
             ResumeGame();
-        else
-            PauseGame();
+            return;
+        }
+
+        PauseGame();
     }
 
     public void PauseGame()

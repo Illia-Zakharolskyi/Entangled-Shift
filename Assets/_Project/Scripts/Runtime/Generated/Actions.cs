@@ -123,7 +123,7 @@ public partial class @Actions: IInputActionCollection2, IDisposable
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""852140f2-7766-474d-8707-702459ba45f3"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
@@ -132,7 +132,7 @@ public partial class @Actions: IInputActionCollection2, IDisposable
                     ""name"": ""Crouch"",
                     ""type"": ""Button"",
                     ""id"": ""27c5f898-bc57-4ee1-8800-db469aca5fe3"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -141,7 +141,7 @@ public partial class @Actions: IInputActionCollection2, IDisposable
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""f1ba0d36-48eb-4cd5-b651-1c94a6531f70"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -150,7 +150,7 @@ public partial class @Actions: IInputActionCollection2, IDisposable
                     ""name"": ""Previous"",
                     ""type"": ""Button"",
                     ""id"": ""2776c80d-3c14-4091-8c56-d04ced07a2b0"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -159,7 +159,7 @@ public partial class @Actions: IInputActionCollection2, IDisposable
                     ""name"": ""Next"",
                     ""type"": ""Button"",
                     ""id"": ""b7230bb6-fc9b-4f52-8b25-f5e19cb2c2ba"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -177,6 +177,33 @@ public partial class @Actions: IInputActionCollection2, IDisposable
                     ""name"": ""ToggleCursor"",
                     ""type"": ""Button"",
                     ""id"": ""32cd3737-6417-4db6-82d8-3249d8455e12"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Throw"",
+                    ""type"": ""Button"",
+                    ""id"": ""e2ae590c-3fe7-4d20-9c0b-574d80706d3d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ActiveSlot"",
+                    ""type"": ""Button"",
+                    ""id"": ""d63f5f3f-2d29-4179-9e51-d208db805b5a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""5fee8915-480d-4c2a-b299-702d2c8fc041"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -572,11 +599,88 @@ public partial class @Actions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a839fa3c-99ab-41c2-8e4e-9b11eb19aa2b"",
-                    ""path"": ""<Keyboard>/tab"",
+                    ""path"": ""<Keyboard>/leftAlt"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ToggleCursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""79c65d21-3efe-4bdd-8995-4dbe0ccb9e65"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8e948cf8-89b6-4d71-afd8-f9bb1d28bcc1"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActiveSlot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9dc79542-d373-4feb-bf47-c9e868cf12c4"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActiveSlot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7e28f00b-173f-4f07-a1d0-3bb9635fb28f"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActiveSlot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dafa7297-fb2b-42e2-8e95-d1ccebcee1de"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActiveSlot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""baeeb11e-71b6-420f-a5f3-c6911967b1e3"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActiveSlot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0eb5dfba-cb1f-420c-abaf-5e0989257307"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenInventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1174,6 +1278,9 @@ public partial class @Actions: IInputActionCollection2, IDisposable
         m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_ToggleCursor = m_Player.FindAction("ToggleCursor", throwIfNotFound: true);
+        m_Player_Throw = m_Player.FindAction("Throw", throwIfNotFound: true);
+        m_Player_ActiveSlot = m_Player.FindAction("ActiveSlot", throwIfNotFound: true);
+        m_Player_OpenInventory = m_Player.FindAction("OpenInventory", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1277,6 +1384,9 @@ public partial class @Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Next;
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_ToggleCursor;
+    private readonly InputAction m_Player_Throw;
+    private readonly InputAction m_Player_ActiveSlot;
+    private readonly InputAction m_Player_OpenInventory;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1328,6 +1438,18 @@ public partial class @Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/ToggleCursor".
         /// </summary>
         public InputAction @ToggleCursor => m_Wrapper.m_Player_ToggleCursor;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Throw".
+        /// </summary>
+        public InputAction @Throw => m_Wrapper.m_Player_Throw;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/ActiveSlot".
+        /// </summary>
+        public InputAction @ActiveSlot => m_Wrapper.m_Player_ActiveSlot;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/OpenInventory".
+        /// </summary>
+        public InputAction @OpenInventory => m_Wrapper.m_Player_OpenInventory;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1384,6 +1506,15 @@ public partial class @Actions: IInputActionCollection2, IDisposable
             @ToggleCursor.started += instance.OnToggleCursor;
             @ToggleCursor.performed += instance.OnToggleCursor;
             @ToggleCursor.canceled += instance.OnToggleCursor;
+            @Throw.started += instance.OnThrow;
+            @Throw.performed += instance.OnThrow;
+            @Throw.canceled += instance.OnThrow;
+            @ActiveSlot.started += instance.OnActiveSlot;
+            @ActiveSlot.performed += instance.OnActiveSlot;
+            @ActiveSlot.canceled += instance.OnActiveSlot;
+            @OpenInventory.started += instance.OnOpenInventory;
+            @OpenInventory.performed += instance.OnOpenInventory;
+            @OpenInventory.canceled += instance.OnOpenInventory;
         }
 
         /// <summary>
@@ -1425,6 +1556,15 @@ public partial class @Actions: IInputActionCollection2, IDisposable
             @ToggleCursor.started -= instance.OnToggleCursor;
             @ToggleCursor.performed -= instance.OnToggleCursor;
             @ToggleCursor.canceled -= instance.OnToggleCursor;
+            @Throw.started -= instance.OnThrow;
+            @Throw.performed -= instance.OnThrow;
+            @Throw.canceled -= instance.OnThrow;
+            @ActiveSlot.started -= instance.OnActiveSlot;
+            @ActiveSlot.performed -= instance.OnActiveSlot;
+            @ActiveSlot.canceled -= instance.OnActiveSlot;
+            @OpenInventory.started -= instance.OnOpenInventory;
+            @OpenInventory.performed -= instance.OnOpenInventory;
+            @OpenInventory.canceled -= instance.OnOpenInventory;
         }
 
         /// <summary>
@@ -1795,6 +1935,27 @@ public partial class @Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnToggleCursor(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Throw" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnThrow(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ActiveSlot" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnActiveSlot(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "OpenInventory" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnOpenInventory(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

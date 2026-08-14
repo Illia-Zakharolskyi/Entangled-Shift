@@ -7,6 +7,7 @@ public class InventoryEvents : ScriptableObject
     #region General Events
     public event Action<ItemData, int> OnItemAdd;
     public event Action<ItemData, int> OnItemRemove;
+    public event Action<int> OnItemRemoveIndex;
     public event Action OnOpen;
     public event Action OnClose;
     #endregion
@@ -17,11 +18,13 @@ public class InventoryEvents : ScriptableObject
     public event Action<InventorySlotUI> OnSlotEndDrag;
     public event Action<InventorySlotUI, InventorySlotUI> OnSwapSlots;
     public event Action<InventorySlotUI> OnSlotTooltip;
+    public event Action<InventorySlotUI> OnActiveSlotChange;
     #endregion
 
     #region General Methods
     public void InvokeItemAdd(ItemData data, int amount) =>OnItemAdd?.Invoke(data, amount);
     public void InvokeItemRemove(ItemData data, int amount) =>OnItemRemove?.Invoke(data, amount);
+    public void InvokeItemRemoveIndex(int index) => OnItemRemoveIndex?.Invoke(index);
     public void InvokeOpen() => OnOpen?.Invoke();
     public void InvokeClose() => OnClose?.Invoke();
     #endregion
@@ -32,5 +35,6 @@ public class InventoryEvents : ScriptableObject
     public void InvokeSlotEndDrag(InventorySlotUI slot) => OnSlotEndDrag?.Invoke(slot);
     public void InvokeSwapSlots(InventorySlotUI slot1, InventorySlotUI slot2) => OnSwapSlots?.Invoke(slot1, slot2);
     public void InvokeSlotTooltip(InventorySlotUI data) => OnSlotTooltip?.Invoke(data);
+    public void InvokeActiveSlotChange(InventorySlotUI slotUI) => OnActiveSlotChange?.Invoke(slotUI);
     #endregion
 }

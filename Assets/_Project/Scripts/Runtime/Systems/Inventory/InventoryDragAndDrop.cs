@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -12,12 +11,12 @@ public class InventoryDragAndDrop : MonoBehaviour
 
     private InventorySlotUI _currSlot;
     private Actions.UIActions _action;
-    
+
 
     #region MonoBehaviour Methods
     private void Awake()
     {
-        Actions a = new Actions();
+        Actions a = new();
         a.Enable();
         _action = a.UI;
     }
@@ -38,10 +37,14 @@ public class InventoryDragAndDrop : MonoBehaviour
 
     }
     #endregion
-   
+
     private void HandleStartDrag(InventorySlotUI slot)
     {
-        if (!HasItemInSlot(slot)) return;
+        if (!HasItemInSlot(slot))
+        {
+            return;
+        }
+
         _currSlot = slot;
 
         dragIcon.transform.SetParent(_canvas.transform);
@@ -55,7 +58,11 @@ public class InventoryDragAndDrop : MonoBehaviour
 
     private void HandleDragging()
     {
-        if (_currSlot == null) return;
+        if (_currSlot == null)
+        {
+            return;
+        }
+
         dragIcon.transform.position = _action.Point.ReadValue<Vector2>();
     }
 
