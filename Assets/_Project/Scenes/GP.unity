@@ -4120,9 +4120,6 @@ PrefabInstance:
       addedObject: {fileID: 1938452841}
     - targetCorrespondingSourceObject: {fileID: 1782702501690864755, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1938452840}
-    - targetCorrespondingSourceObject: {fileID: 1782702501690864755, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1938452839}
     - targetCorrespondingSourceObject: {fileID: 1782702501690864755, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
       insertIndex: -1
@@ -5381,7 +5378,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1938452837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1addd5e8b5dd9774a8bad4c3931dd344, type: 3}
+  m_Script: {fileID: 11500000, guid: 3bd22e7416205314d92ccc7f9c5422a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnhancedShift.Player.Movement.PlayerJump
   pc: {fileID: 1938452842}
@@ -5402,7 +5399,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1938452837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53f749261c53e934ab9f28e4310976aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 88f218a6dcfc8b9429d129f485dd9d63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnhancedShift.Player.Movement.PlayerMovement
   pc: {fileID: 1938452842}
@@ -5410,32 +5407,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   groundCheckRadius: 0.25
-  groundCheckOffset: {x: 0, y: 0.25, z: 0}
+  groundCheckOffset: {x: 0, y: 0.24, z: 0}
   jumpForce: 7
   jumpCooldown: 0.15
   normalHeight: 2
   jumpHeight: 1.4
   normalCenter: {x: 0, y: 1, z: 0}
   resizeSpeed: 15
---- !u!114 &1938452840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1938452837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 436b12b9c307ee34bb74304bcfd2e344, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnhancedShift.Player.Health.PlayerHealth
-  pc: {fileID: 1938452842}
-  standHeight: 2
-  crouchHeight: 1.2
-  speed: 8
-  ceilingMask:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &1938452841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5445,7 +5423,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1938452837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a88bb1466e39ef46a0d3d2ff86219bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 89669a86b3064ae42a1f61e30cf4851b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnhancedShift.Core.Health
   pc: {fileID: 1938452842}
@@ -5458,19 +5436,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1938452837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e7e7fbf98645b44786921a073974aba, type: 3}
+  m_Script: {fileID: 11500000, guid: a3acd2ca814268b40a7d019d1e042528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnhancedShift.Player.Core.ControllerPlayer
   rb: {fileID: 1938452843}
   cc: {fileID: 1938452844}
   an: {fileID: 1938452845}
   cam: {fileID: 2033513219}
-  binds:
-  - action: Jump
-    type: 0
-    param: Jump
-    keys: 20000000
-    enable: 1
+  binds: []
 --- !u!54 &1938452843
 Rigidbody:
   m_ObjectHideFlags: 0
