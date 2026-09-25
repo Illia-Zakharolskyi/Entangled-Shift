@@ -247,11 +247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8012db3b67d56b4385416c02727530b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Runtime.AudioController
-  _minSFXPitch: 0.9
-  _maxSFXPitch: 1.1
-  musicSource: {fileID: 717938972}
-  sfxSource: {fileID: 717938975}
-  uiSource: {fileID: 0}
 --- !u!4 &717938974
 Transform:
   m_ObjectHideFlags: 0
@@ -405,10 +400,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1587256649}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1ce79fa16762f24c80c751d29ed3c42, type: 3}
+  m_Script: {fileID: 11500000, guid: e6bbaefefbe78a345886f1ac0ed2332d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Runtime.Systems.BootstrapLoader
-  _sceneToLoad: MainMenu
+  _sceneToLoad: GP
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
