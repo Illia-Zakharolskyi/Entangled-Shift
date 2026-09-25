@@ -244,14 +244,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 717938971}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d54ff374709598742957470208bb1255, type: 3}
+  m_Script: {fileID: 11500000, guid: b8012db3b67d56b4385416c02727530b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Runtime.AudioController
-  _minSFXPitch: 0.9
-  _maxSFXPitch: 1.1
-  musicSource: {fileID: 717938972}
-  sfxSource: {fileID: 717938975}
-  uiSource: {fileID: 0}
 --- !u!4 &717938974
 Transform:
   m_ObjectHideFlags: 0
@@ -373,7 +368,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1587256651}
-  - component: {fileID: 1587256650}
+  - component: {fileID: 1587256652}
   m_Layer: 0
   m_Name: BootstrapLoader
   m_TagString: Untagged
@@ -381,19 +376,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1587256650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1587256649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f9d319632ddf6a44a240d5182e7a7bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Runtime.Systems.BootstrapLoader
-  _sceneToLoad: MainMenu
 --- !u!4 &1587256651
 Transform:
   m_ObjectHideFlags: 0
@@ -409,6 +391,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1587256652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587256649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6bbaefefbe78a345886f1ac0ed2332d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Runtime.Systems.BootstrapLoader
+  _sceneToLoad: GP
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
