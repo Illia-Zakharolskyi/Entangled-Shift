@@ -75,7 +75,7 @@ public class EquipmentManager : MonoBehaviour
             itemComponent = worldItem.AddComponent<WorldItem>();
         }
 
-        itemComponent.Init(currentData, _data.activeSlot.amount, _itemEvents);
+        itemComponent.Init(currentData, _data.activeSlot.amount, _events);
 
         if (worldItem.TryGetComponent<Rigidbody>(out var rb))
         {

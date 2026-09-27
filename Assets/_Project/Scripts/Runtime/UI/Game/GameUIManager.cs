@@ -11,6 +11,8 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private GameObject inventoryPanel;
     [SerializeField] private InventoryEvents _inventoryEvents;
     [SerializeField] private UIEvents _events;
+    [SerializeField] private GameUIData _data;
+    [SerializeField] private GameObject chestPanel;
 
     [Header("Settings")]
     [SerializeField] private string mainMenuSceneName = "MainMenu";
@@ -45,6 +47,8 @@ public class GameUIManager : MonoBehaviour
 
     public void TogglePause()
     {
+        if (_data.isChestOpen) return;
+
         if (isPaused)
         {
             ResumeGame();
@@ -77,6 +81,7 @@ public class GameUIManager : MonoBehaviour
 
     public void OpenSettings()
     {
+        if (_data.isChestOpen) return;
         settingsMenuPanel.SetActive(true);
         pauseMenuPanel.SetActive(false);
     }
@@ -95,6 +100,7 @@ public class GameUIManager : MonoBehaviour
 
     public void OnInventoryOpen()
     {
+        if (_data.isChestOpen) return;
         inventoryPanel.SetActive(true);
         _inventoryEvents.InvokeOpen();
         gamePanel.SetActive(false);
@@ -105,5 +111,11 @@ public class GameUIManager : MonoBehaviour
         inventoryPanel.SetActive(false);
         _inventoryEvents.InvokeClose();
         gamePanel.SetActive(true);
+    }
+
+    public void OnChestClose()
+    {
+        chestPanel.SetActive(false);
+        _events.InvokeChestClose();
     }
 }

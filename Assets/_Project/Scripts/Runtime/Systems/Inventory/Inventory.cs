@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Inventory : MonoBehaviour
+public class Inventory : MonoBehaviour, IItemContainer
 {
     [Header("Refs")]
     [SerializeField] private InventoryEvents _events;
@@ -70,10 +70,15 @@ public class Inventory : MonoBehaviour
     {
         slotsForInit[indexLocal] = slotReal;
         slotsForInit[indexLocal].Clear();
-        slotsForInit[indexLocal].Initialize(indexGeneral);
+        slotsForInit[indexLocal].Initialize(indexGeneral, this);
 
         _allSlotsUI[indexGeneral] = slotReal;
         _allSlots[indexGeneral] = new InventorySlot(null, 0, indexGeneral);
+    }
+
+    public InventorySlot GetSlot(int index)
+    {
+        return _allSlots[index];
     }
 
 
@@ -141,23 +146,25 @@ public class Inventory : MonoBehaviour
 
     private void AddItem(ItemData itemToAdd, int amount = 1)
     {
+        if (itemToAdd == null || amount <= 0) return;
+
         if (itemToAdd.IsStackable)
         {
             foreach (InventorySlot slot in _allSlots)
             {
                 if (slot.item == itemToAdd && slot.amount < itemToAdd.MaxStackSize)
                 {
-                    _allSlotsUI[slot.index].ChangeData(itemToAdd);
-
                     int spaceLeft = itemToAdd.MaxStackSize - slot.amount;
                     int toAdd = Mathf.Min(spaceLeft, amount);
 
                     slot.amount += toAdd;
                     amount -= toAdd;
 
+                    _allSlotsUI[slot.index].ChangeData(itemToAdd);
+                    UpdateSlot(slot.index);
+
                     if (amount <= 0)
                     {
-                        UpdateSlot(slot.index);
                         return;
                     }
                 }
@@ -169,6 +176,7 @@ public class Inventory : MonoBehaviour
             InventorySlot emptySlot = _allSlots.FirstOrDefault(s => s.IsEmpty);
             if (emptySlot == null)
             {
+                Debug.LogWarning("[Inventory] Инвентарь полон!");
                 return;
             }
 
@@ -176,6 +184,8 @@ public class Inventory : MonoBehaviour
             emptySlot.item = itemToAdd;
             emptySlot.amount = toAdd;
             amount -= toAdd;
+
+            _allSlotsUI[emptySlot.index].ChangeData(itemToAdd);
             UpdateSlot(emptySlot.index);
         }
     }
@@ -207,7 +217,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void RemoveItemIndex(int index)
+    public void RemoveItemIndex(int index)
     {
         if (!_allSlots[index].IsEmpty)
         {
@@ -218,46 +228,61 @@ public class Inventory : MonoBehaviour
 
     private void SwapSlots(InventorySlotUI slot1, InventorySlotUI slot2)
     {
-        int index1 = slot1.Index;
-        int index2 = slot2.Index;
+        IItemContainer container1 = slot1.Container;
+        IItemContainer container2 = slot2.Container;
 
-        if (_allSlots[slot1.Index].IsEmpty)
+        InventorySlot data1 = container1.GetSlot(slot1.Index);
+        InventorySlot data2 = container2.GetSlot(slot2.Index);
+
+        if (data1.IsEmpty) return;
+
+        if (data2.IsEmpty)
         {
-            Debug.Log("S");
-            _allSlots[slot1.Index].amount = _allSlots[slot2.Index].amount;
-            _allSlots[slot1.Index].item = _allSlots[slot2.Index].item;
-            _allSlotsUI[slot1.Index].ChangeData(_allSlots[slot1.Index].item);
-            RemoveItemIndex(slot2.Index);
+            data2.amount = data1.amount;
+            data2.item = data1.item;
 
-            UpdateSlot(index1);
-            UpdateSlot(index2);
+            container1.RemoveItemIndex(slot1.Index);
+
+            container1.UpdateSlot(slot1.Index);
+            container2.UpdateSlot(slot2.Index);
             return;
         }
 
         bool isAddable = IsSlotsAddable(slot1, slot2);
-
         if (isAddable)
         {
-            if (_allSlots[slot1.Index].amount + _allSlots[slot2.Index].amount <= slot1.Data.MaxStackSize)
+            if (data1.amount + data2.amount <= slot1.Data.MaxStackSize)
             {
-                _allSlots[slot1.Index].amount += _allSlots[slot2.Index].amount;
-                RemoveItemIndex(slot2.Index);
-                UpdateSlot(index1);
+                data2.amount += data1.amount;
+                container1.RemoveItemIndex(slot1.Index);
+
+                container1.UpdateSlot(slot1.Index);
+                container2.UpdateSlot(slot2.Index);
+                return;
+            }
+            else
+            {
+                int spaceLeft = slot1.Data.MaxStackSize - data2.amount;
+                data2.amount += spaceLeft;
+                data1.amount -= spaceLeft;
+
+                container1.UpdateSlot(slot1.Index);
+                container2.UpdateSlot(slot2.Index);
                 return;
             }
         }
 
-        ItemData tempItem = _allSlots[index1].item;
-        int tempAmount = _allSlots[index1].amount;
+        ItemData tempItem = data1.item;
+        int tempAmount = data1.amount;
 
-        _allSlots[index1].item = _allSlots[index2].item;
-        _allSlots[index1].amount = _allSlots[index2].amount;
+        data1.item = data2.item;
+        data1.amount = data2.amount;
 
-        _allSlots[index2].item = tempItem;
-        _allSlots[index2].amount = tempAmount;
+        data2.item = tempItem;
+        data2.amount = tempAmount;
 
-        UpdateSlot(index1);
-        UpdateSlot(index2);
+        container1.UpdateSlot(slot1.Index);
+        container2.UpdateSlot(slot2.Index);
     }
 
     private bool IsSlotsAddable(InventorySlotUI slot1, InventorySlotUI slot2)
@@ -275,8 +300,11 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void UpdateSlot(int index)
+    public void UpdateSlot(int index)
     {
+        if (index < 0 || index >= _allSlots.Length) return;
+
+        _allSlotsUI[index].ChangeData(_allSlots[index].item);
         _allSlotsUI[index].UpdateUI(_allSlots[index]);
 
         if (index == CurrentSlotIndex)

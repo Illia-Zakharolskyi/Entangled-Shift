@@ -19,4 +19,4 @@ MonoBehaviour:
   _maxStackSize: 16
   _description: 1
   _prefabToEquip: {fileID: 151796841676614247, guid: 1b6983ad704aba0468a32af7f0e63f8d, type: 3}
-  _prefabToDrop: {fileID: 0}
+  _prefabToDrop: {fileID: 5927670150965714478, guid: f7f4ed4ce293b9f43ab21de2ae6b9575, type: 3}

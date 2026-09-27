@@ -9,14 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beacade9d875c7043b067d3cb28c5c54, type: 3}
+  m_Script: {fileID: 11500000, guid: d3fc21b30103342418fd80fc8ea11cad, type: 3}
   m_Name: Item3
-  m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  _id: 3
+  m_EditorClassIdentifier: Assembly-CSharp::BuildableItemData
+  _id: chest
   _showName: Chest
   _icon: {fileID: 21300000, guid: df2ce1cdbe59e994d9d7461104ca509f, type: 3}
-  _isStackable: 0
-  _maxStackSize: 0
-  _description: 3
+  _isStackable: 1
+  _maxStackSize: 4
+  _description: Huge boy for items storage
   _prefabToEquip: {fileID: 461897442164487073, guid: e28aa74d58c7863459676260bdb2fcb9, type: 3}
   _prefabToDrop: {fileID: 8448089995606757188, guid: c27d4b5f951c9d24fb43f1c9f50fcff3, type: 3}
+  _buildPrefab: {fileID: 1844497384985474779, guid: 36e667100b597d340b11cb13d4583c20, type: 3}
+  _previewPrefab: {fileID: 1844497384985474779, guid: f9f2a166453809d45b0334b6f3e72a84, type: 3}

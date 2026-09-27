@@ -18,10 +18,14 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public int Index => _index;
     public ItemData Data => _data;
     public GameObject ActiveFrame => _activeFrame;
+    private IItemContainer _container;
+    public IItemContainer Container => _container;
 
-    public void Initialize(int index)
+    public void Initialize(int index, IItemContainer container)
     {
         _index = index;
+        _index = index;
+        _container = container;
     }
 
     public void ChangeData(ItemData data)
