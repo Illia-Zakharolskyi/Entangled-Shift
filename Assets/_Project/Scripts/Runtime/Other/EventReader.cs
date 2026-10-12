@@ -34,59 +34,60 @@ public class EventReader : MonoBehaviour
 
     void OnInventoryOpen()
     {
-        _look.OnCursorUnlock();
+        if (_look != null) _look.OnCursorUnlock();
 
-        _look.enabled = false;
-        _controller.enabled = false;
+        if (_look != null) _look.enabled = false;
+        if (_controller != null) _controller.enabled = false;
     }
 
     void OnInventoryClose()
     {
-        _look.OnCursorLock();
+        if (_look != null) _look.OnCursorLock();
 
-        _look.enabled = true;
-        _controller.enabled = true;
+        if (_look != null) _look.enabled = true;
+        if (_controller != null) _controller.enabled = true;
     }
 
     void OnChestOpen()
     {
         _data.isChestOpen = true;
-        _look.OnCursorUnlock();
-        _look.enabled = false;
-        _controller.enabled = false;
-        _manager.enabled = false;
-        _builder.enabled = false;
+        if (_look != null) _look.OnCursorUnlock();
+        if (_look != null) _look.enabled = false;
+        if (_controller != null) _controller.enabled = false;
+        if (_manager != null) _manager.OnWorkDeny();
+        if (_builder != null) _builder.ChangeWorking(false);
+        if (_inventory != null) _inventory.OnSlotSwitchingDeny();
     }
 
     void OnChestClose()
     {
         _data.isChestOpen = false;
-        _look.enabled = true;
-        _controller.enabled = true;
-        _manager.enabled = true;
-        _inventory.enabled = true;
-        _builder.enabled = true;
-        _look.OnCursorLock();
+        if (_look != null) _look.enabled = true;
+        if (_controller != null) _controller.enabled = true;
+        if (_manager != null) _manager.OnWorkAllowed();
+        if (_builder != null) _builder.ChangeWorking(true);
+        if (_look != null) _look.OnCursorLock();
+        if (_inventory != null) _inventory.OnSlotSwitchingAllow();
     }
 
     void OnPauseOpen()
     {
-        if (_look.enabled == true)
+        if (_look != null && _look.enabled == true)
         {
             _look.OnCursorUnlock();
 
             _look.enabled = false;
-            _controller.enabled = false;
+            if (_controller != null) _controller.enabled = false;
             _manager.enabled = false;
         }
     }
 
     void OnPauseClose()
     {
-        _look.enabled = true;
-        _controller.enabled = true;
-        _manager.enabled = true;
-        _inventory.enabled = true;
-        _look.OnCursorLock();
+        if (_look != null) _look.enabled = true;
+        if (_controller != null) _controller.enabled = true;
+        if (_manager != null) _manager.enabled = true;
+        if (_inventory != null) _inventory.enabled = true;
+        if (_look != null) _look.OnCursorLock();
     }
 }

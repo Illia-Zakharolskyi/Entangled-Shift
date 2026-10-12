@@ -32,6 +32,16 @@ public class EquipmentManager : MonoBehaviour
         _events.OnActiveSlotChange -= OnActiveSlotChange;
     }
 
+    public void OnWorkAllowed()
+    {
+        _action.Player.Throw.performed += OnThrow;
+    }
+
+    public void OnWorkDeny()
+    {
+        _action.Player.Throw.performed -= OnThrow;
+    }
+
     private void OnActiveSlotChange(InventorySlotUI newSlot)
     {
         ClearEquippedItem();
@@ -58,6 +68,7 @@ public class EquipmentManager : MonoBehaviour
 
     private void OnThrow(InputAction.CallbackContext context)
     {
+
         if (_data == null || _data.activeSlotUI == null || _data.activeSlotUI.Data == null)
         {
             return;

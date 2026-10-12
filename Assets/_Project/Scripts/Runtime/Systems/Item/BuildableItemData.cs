@@ -6,7 +6,9 @@ public class BuildableItemData : ItemData
     [Header("Building Settings")]
     [SerializeField] private GameObject _buildPrefab;
     [SerializeField] private GameObject _previewPrefab;
+    [SerializeField] private LayerMask _allowedSurfaces;
 
     public GameObject BuildPrefab => _buildPrefab;
     public GameObject PreviewPrefab => _previewPrefab;
+    public LayerMask AllowedSurfaces => _allowedSurfaces;
 }

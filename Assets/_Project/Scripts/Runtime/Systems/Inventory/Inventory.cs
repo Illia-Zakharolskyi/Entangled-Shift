@@ -59,7 +59,7 @@ public class Inventory : MonoBehaviour, IItemContainer
 
         foreach (var item in _items)
         {
-            if (item.Item != null && item.Amount > 0)
+            if (item.Item != null && item.Amount > 0 && item.IsActive)
             {
                 AddItem(item.Item, item.Amount);
             }
@@ -94,6 +94,7 @@ public class Inventory : MonoBehaviour, IItemContainer
         _events.OnSwapSlots += SwapSlots;
         _events.OnOpen += OnOpen;
         _events.OnClose += OnClose;
+        _events.OnActiveSlotRemove += RemoveActiveSlot;
     }
 
     private void OnDisable()
@@ -108,9 +109,22 @@ public class Inventory : MonoBehaviour, IItemContainer
         _events.OnSwapSlots -= SwapSlots;
         _events.OnOpen -= OnOpen;
         _events.OnClose -= OnClose;
+        _events.OnActiveSlotRemove -= RemoveActiveSlot;
 
     }
     #endregion
+
+    public void OnSlotSwitchingAllow()
+    {
+        _actions.UI.ScrollWheel.performed += OnScroll;
+        _actions.Player.ActiveSlot.performed += OnActiveSlot;
+    }
+
+    public void OnSlotSwitchingDeny()
+    {
+        _actions.UI.ScrollWheel.performed -= OnScroll;
+        _actions.Player.ActiveSlot.performed -= OnActiveSlot;
+    }
 
     private void OnOpen()
     {
@@ -215,6 +229,25 @@ public class Inventory : MonoBehaviour, IItemContainer
                 }
             }
         }
+    }
+
+    private void RemoveActiveSlot(int amount)
+    {
+        if (_allSlots[CurrentSlotIndex].IsEmpty) return;
+
+        InventorySlot slot = _allSlots[CurrentSlotIndex];
+        InventorySlotUI slotUI = _allSlotsUI[CurrentSlotIndex];
+
+        slot.amount -= amount;
+        Debug.Log(slot.amount);
+
+        if (slot.amount <= 0)
+        {
+            slot.Clear();
+        }
+
+        slotUI.UpdateUI(slot);
+        _events.InvokeActiveSlotChange(slotUI);
     }
 
     public void RemoveItemIndex(int index)
@@ -343,7 +376,6 @@ public class Inventory : MonoBehaviour, IItemContainer
 
     private void OnActiveSlot(InputAction.CallbackContext context)
     {
-        Debug.Log("Ah");
         string keyName = context.control.name;
 
         if (int.TryParse(keyName, out int digit))
@@ -363,6 +395,7 @@ public struct InventoryTesting
 {
     [SerializeField] private ItemData _item;
     [SerializeField] private int _amount;
+    [field: SerializeField] public bool IsActive { get; private set; }
 
     public ItemData Item => _item;
     public int Amount => _amount;

@@ -37,5 +37,13 @@ namespace EntangledShift.Runtime.UI.Game
                 AudioController.Instance.PlayMusic(_backgroundMusic);
             }
         }
+
+        private void OnDisable()
+        {
+            if (_backgroundMusic != null)
+            {
+                AudioController.Instance.StopMusic();
+            }
+        }
     }
 }

@@ -14,5 +14,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/MainMenu.unity
     guid: 9a48463aee55ad04a820b5b600011156
+  - enabled: 1
+    path: Assets/_Project/Scenes/Gameplay.unity
+    guid: 5981efa3ed939254fbf017c9e9f6d911
+  - enabled: 1
+    path: Assets/_Project/Scenes/Illia_Tasks.unity
+    guid: 04ac49ffb795c8f4fb2247b11e724dcf
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

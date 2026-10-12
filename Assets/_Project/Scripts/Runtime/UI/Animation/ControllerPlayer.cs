@@ -82,7 +82,14 @@ namespace EnhancedShift.Player.Core
         public void Anim(string id, bool value = true)
         {
             if (an == null || string.IsNullOrWhiteSpace(id))
+            {
+                if (an == null)
+                    Debug.LogError($"[ControllerPlayer] Animator не назначен на объекте {gameObject.name}!", this);
+                if (string.IsNullOrWhiteSpace(id))
+                    Debug.LogWarning($"[ControllerPlayer] Вызван Anim(bool), но передано пустое имя параметра!", this);
+
                 return;
+            }
 
             an.SetBool(id, value);
         }
@@ -90,7 +97,14 @@ namespace EnhancedShift.Player.Core
         public void Anim(string id, float value)
         {
             if (an == null || string.IsNullOrWhiteSpace(id))
+            {
+                if (an == null)
+                    Debug.LogError($"[ControllerPlayer] Animator не назначен на объекте {gameObject.name}!", this);
+                if (string.IsNullOrWhiteSpace(id))
+                    Debug.LogWarning($"[ControllerPlayer] Вызван Anim(float), но передано пустое имя параметра!", this);
+
                 return;
+            }
 
             an.SetFloat(id, value);
         }
@@ -98,7 +112,14 @@ namespace EnhancedShift.Player.Core
         public void AnimTrigger(string id)
         {
             if (an == null || string.IsNullOrWhiteSpace(id))
+            {
+                if (an == null)
+                    Debug.LogError($"[ControllerPlayer] Animator не назначен на объекте {gameObject.name}!", this);
+                if (string.IsNullOrWhiteSpace(id))
+                    Debug.LogWarning($"[ControllerPlayer] Вызван AnimTrigger, но передано пустое имя параметра!", this);
+
                 return;
+            }
 
             an.SetTrigger(id);
         }

@@ -33,6 +33,11 @@ public class GameUIManager : MonoBehaviour
         }
     }
 
+    private void Star()
+    {
+        _data.isChestOpen = false;
+    }
+
     private void OnEnable()
     {
         _events.OnInventoryOpen += OnInventoryOpen;

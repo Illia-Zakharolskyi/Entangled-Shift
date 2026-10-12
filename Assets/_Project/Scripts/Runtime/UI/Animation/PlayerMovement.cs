@@ -29,6 +29,10 @@ namespace EnhancedShift.Player.Movement
         private void Update()
         {
             ReadInput();
+
+            // ПЕРЕДАЧА ОСЕЙ В АНИМАТОР:
+            pc.Anim("MoveX", inputDir.x);
+            pc.Anim("MoveZ", inputDir.z);
         }
 
         private void FixedUpdate()

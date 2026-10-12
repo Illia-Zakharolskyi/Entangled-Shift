@@ -8,6 +8,7 @@ public class InventoryEvents : ScriptableObject
     public event Action<ItemData, int> OnItemAdd;
     public event Action<ItemData, int> OnItemRemove;
     public event Action<int> OnItemRemoveIndex;
+    public event Action<int> OnActiveSlotRemove;
     public event Action OnOpen;
     public event Action OnClose;
     #endregion
@@ -27,6 +28,7 @@ public class InventoryEvents : ScriptableObject
     public void InvokeItemRemoveIndex(int index) => OnItemRemoveIndex?.Invoke(index);
     public void InvokeOpen() => OnOpen?.Invoke();
     public void InvokeClose() => OnClose?.Invoke();
+    public void InvokeActiveSlotRemove(int amount) => OnActiveSlotRemove.Invoke(amount);
     #endregion
 
     #region Slot Methods

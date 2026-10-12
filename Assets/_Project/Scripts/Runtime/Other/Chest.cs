@@ -1,4 +1,5 @@
 using UnityEngine;
+using EntangledShift.Runtime.Systems;
 
 public class Chest : MonoBehaviour, IMainInteractable, ISecondInteractable, IItemContainer
 {
@@ -7,6 +8,10 @@ public class Chest : MonoBehaviour, IMainInteractable, ISecondInteractable, IIte
     [SerializeField] private Transform _slotsParent;
     [SerializeField] private UIEvents _events;
     [SerializeField] private InventoryEvents _inventEvents;
+    [SerializeField] private InventoryData _data;
+    [SerializeField] private AudioClip _audio;
+    [field: SerializeField] public Transform _top { get; private set; }
+    [SerializeField] private ChestEvents _chestEvents;
 
     [Header("Item Drop References")]
     [SerializeField] private ItemData _chestItemData;
@@ -21,7 +26,7 @@ public class Chest : MonoBehaviour, IMainInteractable, ISecondInteractable, IIte
 
     private void Awake()
     {
-        ChestData data = FindFirstObjectByType<ChestData>();
+        ChestData data = FindAnyObjectByType<ChestData>();
         if (data != null)
         {
             _chestPanel = data.ChestPanel;
@@ -59,6 +64,9 @@ public class Chest : MonoBehaviour, IMainInteractable, ISecondInteractable, IIte
         {
             if (_events != null) _events.InvokeChestClose();
         }
+
+        AudioController.Instance.PlayOneShotSFXSound(_audio);
+        _chestEvents.InvokeChestInteract(this);
     }
 
     public void SecondInteract()

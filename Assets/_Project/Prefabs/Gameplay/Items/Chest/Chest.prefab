@@ -324,8 +324,11 @@ MonoBehaviour:
   _slotsParent: {fileID: 0}
   _events: {fileID: 11400000, guid: 19ea044dcac8d644ab921bd9f3a16374, type: 2}
   _inventEvents: {fileID: 11400000, guid: a892967159f37b04a829932d8ffe2adf, type: 2}
+  _data: {fileID: 11400000, guid: 3598e74f01d39454a849e7500ae52b34, type: 2}
+  _audio: {fileID: 8300000, guid: b1d078e3ffd4900468437d0da828311c, type: 3}
+  <_top>k__BackingField: {fileID: 3405100889663111259}
+  _chestEvents: {fileID: 11400000, guid: 6fe785ed9ac57fa4caff7172e5631b52, type: 2}
   _chestItemData: {fileID: 11400000, guid: b96578290d4c5624c8a8607b0002623b, type: 2}
-  _worldItemPrefab: {fileID: 0}
   _itemEvents: {fileID: 11400000, guid: 31be3aecd16b31146b8dfd3994a365f2, type: 2}
   _capacity: 36
 --- !u!1 &2656407351883172198
