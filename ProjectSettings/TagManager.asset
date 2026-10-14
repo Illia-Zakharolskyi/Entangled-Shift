@@ -9,7 +9,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Enemy
+  - Player
   - Water
   - UI
   - Ground
@@ -18,12 +18,12 @@ TagManager:
   - Cement
   - Foundation
   - Wall
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - SocketFoundationTop
+  - SocketWallTopInner
+  - SocketWallTopOutside
+  - Ceiling
+  - WallDoorway
+  - SocketWallDoorway
   - 
   - 
   - 

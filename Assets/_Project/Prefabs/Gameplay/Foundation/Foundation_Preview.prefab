@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4a2b75c23e9b84fb4963ff9a9055a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.BuildingSocket
+  <Type>k__BackingField: 0
 --- !u!65 &5224608788752653349
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -111,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4a2b75c23e9b84fb4963ff9a9055a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.BuildingSocket
+  <Type>k__BackingField: 0
 --- !u!65 &3718784519983949656
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -177,6 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4a2b75c23e9b84fb4963ff9a9055a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.BuildingSocket
+  <Type>k__BackingField: 0
 --- !u!65 &5480865259201825025
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -243,7 +246,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e750b2b8fe6e3d4a86a9454fd046a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.FoundationPlacementHandler
-  _foundationData: {fileID: 11400000, guid: 48fc1da3346283c488c3d7fd385828b0, type: 2}
+  _data: {fileID: 11400000, guid: 48fc1da3346283c488c3d7fd385828b0, type: 2}
+  _foundationLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   _gridSize: 5
 --- !u!1 &7703959084215370512
 GameObject:
@@ -290,6 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4a2b75c23e9b84fb4963ff9a9055a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.BuildingSocket
+  <Type>k__BackingField: 0
 --- !u!65 &3494239588798832024
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -382,7 +389,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 534e0ea1b4d5f4e48a20f5ae6d9cede2, type: 2}
+  - {fileID: 2100000, guid: 414a5764c596abe4fb67151b3917daa5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

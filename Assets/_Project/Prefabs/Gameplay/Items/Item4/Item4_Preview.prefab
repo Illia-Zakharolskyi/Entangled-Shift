@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91edb1f96211cf44cbd5e62f37471729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.BrickPlacementValidator
-  _brickData: {fileID: 11400000, guid: d27b0d0fcf558ff4396be4ff0941beeb, type: 2}
+  _data: {fileID: 11400000, guid: d27b0d0fcf558ff4396be4ff0941beeb, type: 2}
 --- !u!1 &8848301534297267756
 GameObject:
   m_ObjectHideFlags: 0

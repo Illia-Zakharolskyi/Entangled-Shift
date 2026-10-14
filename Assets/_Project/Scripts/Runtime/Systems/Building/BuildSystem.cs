@@ -80,22 +80,36 @@ namespace EntangledShift.Systems.Building
 
         void HandleActiveBuilding()
         {
+            if (_itemValidator == null) return;
+
             Ray ray = _mainCamera.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
 
-            if (Physics.Raycast(ray, out RaycastHit hit, _buildRange))
+            _itemPreview.SetActive(true);
+
+            bool canPlace = false;
+            GameObject targetToConsume = null;
+            RaycastHit hit;
+
+            bool hasHit = _itemValidator.Raycast(ray, out hit, _buildRange);
+
+            if (hasHit)
             {
-                _itemPreview.SetActive(true);
+                canPlace = _itemValidator.CanPlace(hit, out targetToConsume);
+            }
+            else
+            {
+                hit = new RaycastHit();
+                hit.point = ray.GetPoint(_buildRange);
+            }
 
-                bool canPlace = _itemValidator.CanPlace(hit, out GameObject targetToConsume);
+            UpdatePreview(hit, canPlace);
 
-                UpdatePreview(hit, canPlace);
-                
-                if (canPlace && Input.GetMouseButtonDown(0))
-                {
-                    ExecuteBuild(targetToConsume);
-                }
+            if (canPlace && Input.GetMouseButtonDown(0))
+            {
+                ExecuteBuild(targetToConsume);
             }
         }
+
 
         private void ExecuteBuild(GameObject targetToConsume)
         {

@@ -24,4 +24,4 @@ MonoBehaviour:
   _previewPrefab: {fileID: 5820644363949135062, guid: 15f5554dada23324785e50eac2117a74, type: 3}
   _allowedSurfaces:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 20480

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3fc21b30103342418fd80fc8ea11cad, type: 3}
+  m_Name: DoorData
+  m_EditorClassIdentifier: Assembly-CSharp::BuildableItemData
+  _id: door
+  _showName: Door
+  _icon: {fileID: 21300000, guid: e257585dc0b01fc45a49bd080ba683f0, type: 3}
+  _isStackable: 1
+  _maxStackSize: 64
+  _description: Door
+  _prefabToEquip: {fileID: 583192182429340293, guid: 640b2c2bc0afee743a7b5585dd8d1444, type: 3}
+  _prefabToDrop: {fileID: 8322417980844106931, guid: 12baf8152e1fccb40a4e3bd334342123, type: 3}
+  _buildPrefab: {fileID: 3354047227188390673, guid: 25f2ea7c30865734bb3e685073aac404, type: 3}
+  _previewPrefab: {fileID: 3879992730227719144, guid: 5ddea28ec9eecab438f35f86e8270f42, type: 3}
+  _allowedSurfaces:
+    serializedVersion: 2
+    m_Bits: 131072
+  <ValidColor>k__BackingField: {r: 0, g: 1, b: 0, a: 0.5}
+  <InvalidColor>k__BackingField: {r: 1, g: 0, b: 0, a: 0.5}
