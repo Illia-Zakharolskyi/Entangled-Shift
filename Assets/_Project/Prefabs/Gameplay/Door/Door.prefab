@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 4986009331251889251}
   - component: {fileID: 7768314882618813536}
   - component: {fileID: 79209980049094724}
-  m_Layer: 6
+  - component: {fileID: -2509017007425209086}
+  m_Layer: 10
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,8 +72,21 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.022583, y: 2.1031072, z: 0.3}
-  m_Center: {x: -0.4911499, y: 1.0105895, z: 0}
+  m_Size: {x: 1.0000844, y: 2.1031072, z: 0.30887222}
+  m_Center: {x: -0.5023992, y: 1.0105895, z: -0.00859642}
+--- !u!114 &-2509017007425209086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3354047227188390673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cdced66ad87d9641948e19b374f00a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.BuildStructure
+  <Data>k__BackingField: {fileID: 11400000, guid: 5f0bae250b8fa82459288612d9a55120, type: 2}
 --- !u!1 &4388091914988025160
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,7 +96,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3496097387405366144}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +131,7 @@ GameObject:
   - component: {fileID: 6356301367888481035}
   - component: {fileID: 5185550719445343703}
   - component: {fileID: 6728941181792866862}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,40 +1,32 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace EntangledShift.Systems.Building
 {
-    public class CeilingPlacementHandler : MonoBehaviour, IPlacementHandler
+    public class CeilingPlacementHandler : PlacementHandler
     {
-        [Header("References")]
-        [SerializeField] private BuildableItemData _data;
-        [SerializeField] private SocketType _socketType;
-        [SerializeField] private LayerMask  _ceilingMask;
+        [Header("Settings")]
+        [SerializeField] private List<SocketType> _socketTypes = new() { SocketType.WallTopInner };
 
-        private BuildingSocket _targetSocket;
-        private Renderer _renderer;
-        private MaterialPropertyBlock _block;
-        private Camera _cam;
-        private float _buildRange;
-
-        private void Awake()
-        {
-            _cam = Camera.main;
-            _renderer = GetComponent<Renderer>();
-            _block = new MaterialPropertyBlock();
-        }
-
-        public bool CanPlace(RaycastHit hit, out GameObject targetToConsume)
+        public override bool CanPlace(RaycastHit hit, out GameObject targetToConsume)
         {
             targetToConsume = null;
             _targetSocket = null;
 
-            Ray ray = _cam.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
-            if (Physics.Raycast(ray, _buildRange, _ceilingMask))
+            if (hit.collider.TryGetComponent<BuildStructure>(out var structure) && structure.Data == _data)
             {
                 return false;
             }
 
             BuildingSocket socket = hit.collider.GetComponent<BuildingSocket>();
-            if (socket == null || socket.IsOccupied || socket.Type != _socketType)
+
+            if (socket == null || socket.IsOccupied || !_socketTypes.Contains(socket.Type))
+            {
+                return false;
+            }
+
+            BuildStructure wallStructure = socket.transform.root.GetComponentInChildren<BuildStructure>();
+            if (wallStructure == null || wallStructure.Shape != StructureShape.Cube)
             {
                 return false;
             }
@@ -43,7 +35,7 @@ namespace EntangledShift.Systems.Building
             return true;
         }
 
-        public void UpdatePreview(GameObject itemPreview, RaycastHit hit, bool canPlace)
+        public override void UpdatePreview(GameObject itemPreview, RaycastHit hit, bool canPlace)
         {
             UpdatePreviewColor(canPlace);
 
@@ -52,7 +44,6 @@ namespace EntangledShift.Systems.Building
                 Vector3 socketPos = _targetSocket.transform.position;
                 Quaternion socketRot = _targetSocket.transform.rotation;
 
-                // Сдвигаем центр потолка внутрь комнаты от верхнего края стены (например, на 2.5 метра, половину ширины)
                 float halfCeilingSize = 2.5f;
                 Vector3 finalPos = socketPos + (socketRot * Vector3.forward * halfCeilingSize);
 
@@ -65,7 +56,7 @@ namespace EntangledShift.Systems.Building
             }
         }
 
-        public void Build(Vector3 position, Quaternion rotation)
+        public override void Build(Vector3 position, Quaternion rotation)
         {
             if (_targetSocket != null)
             {
@@ -73,27 +64,6 @@ namespace EntangledShift.Systems.Building
             }
 
             GameObject newCeiling = Instantiate(_data.BuildPrefab, position, rotation);
-        }
-
-        public bool Raycast(Ray ray, out RaycastHit hit, float buildRange)
-        {
-            _buildRange = buildRange;
-            if (!Physics.Raycast(ray, out hit, buildRange, _data.AllowedSurfaces))
-            {
-                _targetSocket = null;
-                return false;
-            }
-
-            return true;
-        }
-
-        public void UpdatePreviewColor(bool canBuild)
-        {
-            Color curr = canBuild ? _data.ValidColor : _data.InvalidColor;
-
-            _renderer.GetPropertyBlock(_block);
-            _block.SetColor(_data.BaseColorId, curr);
-            _renderer.SetPropertyBlock(_block);
         }
     }
 }

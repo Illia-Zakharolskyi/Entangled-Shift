@@ -24,4 +24,9 @@ MonoBehaviour:
   _previewPrefab: {fileID: 5820644363949135062, guid: 15f5554dada23324785e50eac2117a74, type: 3}
   _allowedSurfaces:
     serializedVersion: 2
-    m_Bits: 20480
+    m_Bits: 2816
+  <ObstacleMask>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 0
+  <ValidColor>k__BackingField: {r: 0, g: 1, b: 0, a: 0.5}
+  <InvalidColor>k__BackingField: {r: 1, g: 0, b: 0, a: 0.5}

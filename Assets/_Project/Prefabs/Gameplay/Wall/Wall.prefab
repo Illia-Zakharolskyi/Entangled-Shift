@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 6749673988364051134}
   - component: {fileID: 4723015515754078605}
   - component: {fileID: 414524558411586103}
-  m_Layer: 0
+  - component: {fileID: 7043275630942464728}
+  m_Layer: 9
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,6 +113,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7043275630942464728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706195313844553679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cdced66ad87d9641948e19b374f00a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.WallStructure
+  <Data>k__BackingField: {fileID: 11400000, guid: 438774a518b52004680635432ceee5e9, type: 2}
+  <Shape>k__BackingField: 0
 --- !u!1 &2555475361854955751
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +138,7 @@ GameObject:
   - component: {fileID: 6313943628613830497}
   - component: {fileID: 2217879812527243607}
   - component: {fileID: 7391918871210981872}
-  m_Layer: 13
+  m_Layer: 8
   m_Name: WallTopInner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.BuildingSocket
   <Type>k__BackingField: 1
+  <Shape>k__BackingField: 0
 --- !u!65 &7391918871210981872
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -190,7 +206,7 @@ GameObject:
   - component: {fileID: 2901223459613908316}
   - component: {fileID: 7147970814596938232}
   - component: {fileID: 2711393371220316146}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: WallTopInner (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,6 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.BuildingSocket
   <Type>k__BackingField: 2
+  <Shape>k__BackingField: 0
 --- !u!65 &2711393371220316146
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -255,7 +272,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6561064034110132740}
-  m_Layer: 11
+  m_Layer: 9
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -272,7 +289,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -290.9613, y: 0.49998, z: 20844.637}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.0001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8917690266703295975}

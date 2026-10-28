@@ -158,6 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.DoorPlacementHandler
   _data: {fileID: 11400000, guid: 5f0bae250b8fa82459288612d9a55120, type: 2}
+  _requiredSocket: 3
 --- !u!1 &6401852945761583460
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,6 +24,6 @@ MonoBehaviour:
   _previewPrefab: {fileID: 3879992730227719144, guid: 5ddea28ec9eecab438f35f86e8270f42, type: 3}
   _allowedSurfaces:
     serializedVersion: 2
-    m_Bits: 131072
+    m_Bits: 768
   <ValidColor>k__BackingField: {r: 0, g: 1, b: 0, a: 0.5}
   <InvalidColor>k__BackingField: {r: 1, g: 0, b: 0, a: 0.5}

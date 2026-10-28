@@ -124,16 +124,7 @@ namespace EntangledShift.Systems.Building
 
         private void UpdatePreview(RaycastHit hit, bool canPlace)
         {
-            // TODO: canPlace for green/red obvodka
-            // Логика позиционирования (например, привязка к сокету или точке цемента)
             _itemValidator.UpdatePreview(_itemPreview, hit, canPlace);
-
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                _itemPreview.transform.Rotate(0, 90f, 0);
-            }
         }
-
-
     }
 }

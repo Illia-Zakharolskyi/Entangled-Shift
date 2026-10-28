@@ -126,7 +126,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.CeilingPlacementHandler
   _data: {fileID: 11400000, guid: 77c4c4e468f163042873e41ffed443b9, type: 2}
-  _socketType: 1
-  _ceilingMask:
-    serializedVersion: 2
-    m_Bits: 32768
+  _requiredSocket: 1

@@ -9,7 +9,6 @@ public class EventReader : MonoBehaviour
     [SerializeField] private PlayerControllerA _controller;
     [SerializeField] private EquipmentManager _manager;
     [SerializeField] private Inventory _inventory;
-    [SerializeField] private SimpleBuilder _builder;
     [SerializeField] private GameUIData _data;
 
     void OnEnable()
@@ -55,7 +54,6 @@ public class EventReader : MonoBehaviour
         if (_look != null) _look.enabled = false;
         if (_controller != null) _controller.enabled = false;
         if (_manager != null) _manager.OnWorkDeny();
-        if (_builder != null) _builder.ChangeWorking(false);
         if (_inventory != null) _inventory.OnSlotSwitchingDeny();
     }
 
@@ -65,7 +63,6 @@ public class EventReader : MonoBehaviour
         if (_look != null) _look.enabled = true;
         if (_controller != null) _controller.enabled = true;
         if (_manager != null) _manager.OnWorkAllowed();
-        if (_builder != null) _builder.ChangeWorking(true);
         if (_look != null) _look.OnCursorLock();
         if (_inventory != null) _inventory.OnSlotSwitchingAllow();
     }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9011293188854289244}
   - component: {fileID: 268199241632121102}
   - component: {fileID: 3392557010773203696}
-  m_Layer: 17
+  m_Layer: 8
   m_Name: SocketDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,8 @@ GameObject:
   - component: {fileID: 434027030675213342}
   - component: {fileID: 8285868545439077196}
   - component: {fileID: 260347804608916515}
-  m_Layer: 16
+  - component: {fileID: 1557145234574879472}
+  m_Layer: 9
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -749,6 +750,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &1557145234574879472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3121963294001793521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cdced66ad87d9641948e19b374f00a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.BuildStructure
+  <Data>k__BackingField: {fileID: 11400000, guid: b666012424481ee48b3f743af6c83ad0, type: 2}
 --- !u!1 &5009525262090926192
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,7 +772,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3179482784808675603}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WallDoorway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -775,7 +789,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -293.41635, y: 5.29791, z: 20840.598}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7408834690901933853}
@@ -795,7 +809,7 @@ GameObject:
   - component: {fileID: 6855396634682960033}
   - component: {fileID: 3486680933878679183}
   - component: {fileID: 5298029668239483608}
-  m_Layer: 13
+  m_Layer: 8
   m_Name: SocketWall2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -862,7 +876,7 @@ GameObject:
   - component: {fileID: 1254400582376042793}
   - component: {fileID: 2487395074474272839}
   - component: {fileID: 6064451438424022109}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: SocketWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

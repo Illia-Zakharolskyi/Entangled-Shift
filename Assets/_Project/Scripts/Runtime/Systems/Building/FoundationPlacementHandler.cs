@@ -2,78 +2,47 @@ using UnityEngine;
 
 namespace EntangledShift.Systems.Building
 {
-    public class FoundationPlacementHandler : MonoBehaviour, IPlacementHandler
+    public class FoundationPlacementHandler : PlacementHandler
     {
         [Header("References")]
-        [SerializeField] private BuildableItemData _data;
-        [SerializeField] private LayerMask _foundationLayer;
+        [SerializeField] private LayerMask _groundLayer;
 
-        [Header("Settings")]
-        [SerializeField] private float _gridSize;
-        private Renderer _renderer;
-        private MaterialPropertyBlock _block;
-        private Camera _cam;
-        private float _buildRange;
-
-        private void Awake()
-        {
-            _cam = Camera.main;
-            _renderer = GetComponent<Renderer>();
-            if (_renderer == null)
-            {
-                _renderer = GetComponentInChildren<Renderer>();
-            }
-            _block = new MaterialPropertyBlock();
-        }
-
-        public bool CanPlace(RaycastHit hit, out GameObject targetToConsume)
+        public override bool CanPlace(RaycastHit hit, out GameObject targetToConsume)
         {
             targetToConsume = null;
 
-            Ray ray = _cam.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
-            if (Physics.Raycast(ray, _buildRange, _foundationLayer))
+            if (!_groundLayer.Contains(hit.transform.gameObject.layer))
             {
                 return false;
             }
 
+            if (hit.collider.TryGetComponent<BuildStructure>(out var structure))
+            {
+                return false;
+            }
+
+            int hitCount = Physics.OverlapBoxNonAlloc(transform.position, _boxSize / 2.01f, _hitCache, Quaternion.identity, _data.ObstacleMask);
+
+            if (hitCount > 0) return false;
+
             return true;
         }
 
-        public void UpdatePreview(GameObject itemPreview, RaycastHit hit, bool canPlace)
+        public override void UpdatePreview(GameObject itemPreview, RaycastHit hit, bool canPlace)
         {
             UpdatePreviewColor(canPlace);
 
-            float snappedX = Mathf.Round(hit.point.x / _gridSize) * _gridSize;
-            float snappedZ = Mathf.Round(hit.point.z / _gridSize) * _gridSize;
+            float snappedX = Mathf.Round(hit.point.x / _boxSize.x) * _boxSize.x;
+            float snappedZ = Mathf.Round(hit.point.z / _boxSize.x) * _boxSize.x;
 
             float snappedY = hit.point.y;
 
             itemPreview.transform.position = new Vector3(snappedX, snappedY, snappedZ);
         }
 
-        public void Build(Vector3 position, Quaternion rotation)
+        public override void Build(Vector3 position, Quaternion rotation)
         {
             Instantiate(_data.BuildPrefab, position, rotation);
-        }
-
-        public bool Raycast(Ray ray, out RaycastHit hit, float buildRange)
-        {
-            _buildRange = buildRange;
-            if (!Physics.Raycast(ray, out hit, buildRange, _data.AllowedSurfaces))
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        public void UpdatePreviewColor(bool canBuild)
-        {
-            Color curr = canBuild ? _data.ValidColor : _data.InvalidColor;
-
-            _renderer.GetPropertyBlock(_block);
-            _block.SetColor(_data.BaseColorId, curr);
-            _renderer.SetPropertyBlock(_block);
         }
     }
 }
