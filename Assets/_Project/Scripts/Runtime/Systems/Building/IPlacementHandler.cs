@@ -7,5 +7,7 @@ namespace EntangledShift.Systems.Building
         bool CanPlace(RaycastHit hit, out GameObject targetToConsume);
         void UpdatePreview(GameObject _itemPreview, RaycastHit hit, bool canPlace);
         void Build(Vector3 position, Quaternion rotation);
+        bool Raycast(Ray ray, out RaycastHit hit, float buildRange);
+        void UpdatePreviewColor(bool canBuild);
     }
 }

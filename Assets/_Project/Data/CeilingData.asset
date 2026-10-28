@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3fc21b30103342418fd80fc8ea11cad, type: 3}
+  m_Name: CeilingData
+  m_EditorClassIdentifier: Assembly-CSharp::BuildableItemData
+  _id: ceiling
+  _showName: Ceiling
+  _icon: {fileID: 21300000, guid: 5f376619d3850b5418ddaf503c47aee8, type: 3}
+  _isStackable: 1
+  _maxStackSize: 64
+  _description: 
+  _prefabToEquip: {fileID: 583192182429340293, guid: 640b2c2bc0afee743a7b5585dd8d1444, type: 3}
+  _prefabToDrop: {fileID: 8322417980844106931, guid: 12baf8152e1fccb40a4e3bd334342123, type: 3}
+  _buildPrefab: {fileID: 4810752024569798141, guid: 67904bee739570641991d176d509a974, type: 3}
+  _previewPrefab: {fileID: 5063770725449986776, guid: a42edbb30b0c3c14fb1503bac495ca41, type: 3}
+  _allowedSurfaces:
+    serializedVersion: 2
+    m_Bits: 2816
+  <ObstacleMask>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 0
+  <ValidColor>k__BackingField: {r: 0, g: 1, b: 0, a: 0.5}
+  <InvalidColor>k__BackingField: {r: 1, g: 0, b: 0, a: 0.5}

@@ -9,15 +9,15 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Enemy
+  - Player
   - Water
   - UI
   - Ground
   - World
-  - Brick
-  - Cement
-  - Foundation
-  - Wall
+  - BuildingSocketCube
+  - BuildStructure
+  - Interactable
+  - BuildingSocketTriangle
   - 
   - 
   - 

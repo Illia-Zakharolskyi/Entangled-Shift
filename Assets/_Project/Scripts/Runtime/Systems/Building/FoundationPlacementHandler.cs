@@ -2,38 +2,47 @@ using UnityEngine;
 
 namespace EntangledShift.Systems.Building
 {
-    public class FoundationPlacementHandler : MonoBehaviour, IPlacementHandler
+    public class FoundationPlacementHandler : PlacementHandler
     {
         [Header("References")]
-        [SerializeField] private BuildableItemData _foundationData;
+        [SerializeField] private LayerMask _groundLayer;
 
-        [Header("Settings")]
-        [SerializeField] private float _gridSize;
-
-        public bool CanPlace(RaycastHit hit, out GameObject targetToConsume)
+        public override bool CanPlace(RaycastHit hit, out GameObject targetToConsume)
         {
             targetToConsume = null;
-            if (!_foundationData.AllowedSurfaces.Contains(hit.transform.gameObject.layer))
+
+            if (!_groundLayer.Contains(hit.transform.gameObject.layer))
             {
                 return false;
             }
 
+            if (hit.collider.TryGetComponent<BuildStructure>(out var structure))
+            {
+                return false;
+            }
+
+            int hitCount = Physics.OverlapBoxNonAlloc(transform.position, _boxSize / 2.01f, _hitCache, Quaternion.identity, _data.ObstacleMask);
+
+            if (hitCount > 0) return false;
+
             return true;
         }
 
-        public void UpdatePreview(GameObject itemPreview, RaycastHit hit, bool canPlace)
+        public override void UpdatePreview(GameObject itemPreview, RaycastHit hit, bool canPlace)
         {
-            float snappedX = Mathf.Round(hit.point.x / _gridSize) * _gridSize;
-            float snappedZ = Mathf.Round(hit.point.z / _gridSize) * _gridSize;
-            
+            UpdatePreviewColor(canPlace);
+
+            float snappedX = Mathf.Round(hit.point.x / _boxSize.x) * _boxSize.x;
+            float snappedZ = Mathf.Round(hit.point.z / _boxSize.x) * _boxSize.x;
+
             float snappedY = hit.point.y;
 
             itemPreview.transform.position = new Vector3(snappedX, snappedY, snappedZ);
         }
 
-        public void Build(Vector3 position, Quaternion rotation)
+        public override void Build(Vector3 position, Quaternion rotation)
         {
-            Instantiate(_foundationData.BuildPrefab, position, rotation);
+            Instantiate(_data.BuildPrefab, position, rotation);
         }
     }
 }

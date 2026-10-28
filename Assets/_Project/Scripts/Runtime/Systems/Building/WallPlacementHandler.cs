@@ -1,21 +1,32 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace EntangledShift.Systems.Building
 {
-    public class WallPlacementHandler : MonoBehaviour, IPlacementHandler
+    public class WallPlacementHandler : PlacementHandler
     {
-        [Header("References")]
-        [SerializeField] private BuildableItemData _wallData;
+        [Header("Settings")]
+        [SerializeField] private List<SocketType> _socketTypes = new() { SocketType.FoundationTop, SocketType.WallTopOutside };
 
-        private BuildingSocket _targetSocket;
-
-        public bool CanPlace(RaycastHit hit, out GameObject targetToConsume)
+        public override bool CanPlace(RaycastHit hit, out GameObject targetToConsume)
         {
             targetToConsume = null;
             _targetSocket = null;
 
+            if (hit.collider.TryGetComponent<BuildStructure>(out var structure) && structure.Data == _data)
+            {
+                return false;
+            }
+
             BuildingSocket socket = hit.collider.GetComponent<BuildingSocket>();
-            if (socket == null || socket.IsOccupied)
+
+            if (socket == null || socket.IsOccupied || !_socketTypes.Contains(socket.Type))
+            {
+                return false;
+            }
+
+            BuildStructure wallStructure = socket.transform.root.GetComponentInChildren<BuildStructure>();
+            if (wallStructure == null || wallStructure.Shape != StructureShape.Cube && socket.Type != SocketType.WallTopOutside)
             {
                 return false;
             }
@@ -24,16 +35,14 @@ namespace EntangledShift.Systems.Building
             return true;
         }
 
-        public void UpdatePreview(GameObject itemPreview, RaycastHit hit, bool canPlace)
+        public override void UpdatePreview(GameObject itemPreview, RaycastHit hit, bool canPlace)
         {
+            UpdatePreviewColor(canPlace);
+
             if (_targetSocket != null)
             {
-                // Жестко привязываем позицию и поворот к сокету
                 itemPreview.transform.position = _targetSocket.transform.position;
                 itemPreview.transform.rotation = _targetSocket.transform.rotation;
-
-                // Принудительно сбрасываем масштаб превью на единицы, 
-                // чтобы игра случайно не растягивала стену по Y или другим осям
                 itemPreview.transform.localScale = Vector3.one;
             }
             else
@@ -42,15 +51,24 @@ namespace EntangledShift.Systems.Building
             }
         }
 
-        public void Build(Vector3 position, Quaternion rotation)
+        public override void Build(Vector3 position, Quaternion rotation)
         {
             if (_targetSocket != null)
             {
                 _targetSocket.Occupy();
             }
 
-            GameObject newWall = Instantiate(_wallData.BuildPrefab, position, rotation);
+            GameObject newWall = Instantiate(_data.BuildPrefab, position, rotation);
             newWall.transform.localScale = Vector3.one;
+
+            if (_targetSocket != null)
+            {
+                BuildStructure wallStructure = newWall.GetComponentInChildren<BuildStructure>();
+                if (wallStructure != null)
+                {
+                    wallStructure.Shape = _targetSocket.Shape;
+                }
+            }
         }
     }
 }
