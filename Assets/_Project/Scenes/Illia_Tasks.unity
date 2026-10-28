@@ -7285,15 +7285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9bbeef4697a8ad4397e645c56f1fa6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenuManager
-  gamePanel: {fileID: 1664022605}
-  pauseMenuPanel: {fileID: 1081564715}
-  settingsMenuPanel: {fileID: 1627756128}
-  inventoryPanel: {fileID: 714156955}
-  _inventoryEvents: {fileID: 11400000, guid: a892967159f37b04a829932d8ffe2adf, type: 2}
-  _events: {fileID: 11400000, guid: 19ea044dcac8d644ab921bd9f3a16374, type: 2}
-  _data: {fileID: 11400000, guid: cc6ba4115cfeb3c49933bfb60e2c6163, type: 2}
-  chestPanel: {fileID: 1574838731}
-  mainMenuSceneName: MainMenu
 --- !u!4 &819145865
 Transform:
   m_ObjectHideFlags: 0
