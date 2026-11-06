@@ -6669,7 +6669,7 @@ MonoBehaviour:
     <IsActive>k__BackingField: 0
   - _item: {fileID: 11400000, guid: 48fc1da3346283c488c3d7fd385828b0, type: 2}
     _amount: 64
-    <IsActive>k__BackingField: 0
+    <IsActive>k__BackingField: 1
   - _item: {fileID: 11400000, guid: 438774a518b52004680635432ceee5e9, type: 2}
     _amount: 64
     <IsActive>k__BackingField: 0
@@ -6678,10 +6678,10 @@ MonoBehaviour:
     <IsActive>k__BackingField: 0
   - _item: {fileID: 11400000, guid: b666012424481ee48b3f743af6c83ad0, type: 2}
     _amount: 64
-    <IsActive>k__BackingField: 0
+    <IsActive>k__BackingField: 1
   - _item: {fileID: 11400000, guid: 5f0bae250b8fa82459288612d9a55120, type: 2}
     _amount: 64
-    <IsActive>k__BackingField: 0
+    <IsActive>k__BackingField: 1
   - _item: {fileID: 11400000, guid: e345b601f207b3d45b7c1070b1fbd1ad, type: 2}
     _amount: 64
     <IsActive>k__BackingField: 0
@@ -6694,6 +6694,9 @@ MonoBehaviour:
   - _item: {fileID: 11400000, guid: 29be08ce7a0f1f64ba4e134c32b19d05, type: 2}
     _amount: 64
     <IsActive>k__BackingField: 0
+  - _item: {fileID: 11400000, guid: 118919ba055d1e64dbfe6ce556a0d4ac, type: 2}
+    _amount: 1
+    <IsActive>k__BackingField: 1
 --- !u!114 &729326585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7285,6 +7288,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9bbeef4697a8ad4397e645c56f1fa6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenuManager
+  gamePanel: {fileID: 1664022605}
+  pauseMenuPanel: {fileID: 1081564715}
+  settingsMenuPanel: {fileID: 1627756128}
+  inventoryPanel: {fileID: 714156955}
+  _inventoryEvents: {fileID: 11400000, guid: a892967159f37b04a829932d8ffe2adf, type: 2}
+  _events: {fileID: 11400000, guid: 19ea044dcac8d644ab921bd9f3a16374, type: 2}
+  _data: {fileID: 11400000, guid: cc6ba4115cfeb3c49933bfb60e2c6163, type: 2}
+  chestPanel: {fileID: 1574838731}
+  mainMenuSceneName: MainMenu
 --- !u!4 &819145865
 Transform:
   m_ObjectHideFlags: 0
@@ -12109,7 +12121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64d56935cae41164b9f8a4297a14001d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPicker
-  _distance: 2000
+  _distance: 10
   _mainCamera: {fileID: 1405523969}
   _mask:
     serializedVersion: 2
@@ -18305,8 +18317,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2114306461}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.3, y: 0.074, z: 1.17}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.4, y: 0, z: 0.4}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []

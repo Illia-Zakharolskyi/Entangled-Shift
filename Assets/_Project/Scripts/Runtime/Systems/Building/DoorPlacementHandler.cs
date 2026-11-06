@@ -9,6 +9,19 @@ namespace EntangledShift
         [Header("Settings")]
         [SerializeField] private List<SocketType> _socketTypes = new() { SocketType.WallDoorway };
 
+        protected override void Awake()
+        {
+            _renderer = GetComponentInChildren<Renderer>();
+
+            _block = new MaterialPropertyBlock();
+            _hitCache = new Collider[2];
+
+            if (_renderer == null)
+            {
+                Debug.Log($"No Renderer found: {name}");
+            }
+        }
+
         public override bool CanPlace(RaycastHit hit, out GameObject targetToConsume)
         {
             targetToConsume = null;
@@ -19,7 +32,11 @@ namespace EntangledShift
                 return false;
             }
 
-            BuildingSocket socket = hit.collider.GetComponent<BuildingSocket>();
+            if (!hit.collider.TryGetComponent<BuildingSocket>(out BuildingSocket socket))
+            {
+                return false;
+            }
+
             if (socket == null || socket.IsOccupied || !_socketTypes.Contains(socket.Type))
             {
                 return false;
