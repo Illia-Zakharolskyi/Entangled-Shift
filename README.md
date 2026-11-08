@@ -1,5 +1,5 @@
 # Entangled-Shift
-## Final project (developed throughout the entire 3rd semester)
+## Final project (developed throughout the entire 3rd semester with a team of 4 people)
 
 ---
 
