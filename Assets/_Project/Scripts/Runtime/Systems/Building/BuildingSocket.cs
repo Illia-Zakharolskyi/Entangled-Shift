@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace EntangledShift.Systems.Building
@@ -25,7 +24,7 @@ namespace EntangledShift.Systems.Building
     }
     public enum StructureShape
     {
-        Cube,
+        Square,
         Triangle
     }
 }

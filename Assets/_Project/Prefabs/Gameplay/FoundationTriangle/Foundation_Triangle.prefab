@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.BuildingSocket
   <Type>k__BackingField: 4
-  <Shape>k__BackingField: 0
+  <Shape>k__BackingField: 1
 --- !u!1 &3246844896040780821
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,7 +673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.BuildingSocket
   <Type>k__BackingField: 4
-  <Shape>k__BackingField: 0
+  <Shape>k__BackingField: 1
 --- !u!1 &8803873907446286081
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,4 +779,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.BuildingSocket
   <Type>k__BackingField: 4
-  <Shape>k__BackingField: 0
+  <Shape>k__BackingField: 1

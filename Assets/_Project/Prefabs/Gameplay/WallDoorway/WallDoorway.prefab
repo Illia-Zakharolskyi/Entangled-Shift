@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.BuildingSocket
   <Type>k__BackingField: 3
+  <Shape>k__BackingField: 0
 --- !u!65 &3392557010773203696
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -763,6 +764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.BuildStructure
   <Data>k__BackingField: {fileID: 11400000, guid: b666012424481ee48b3f743af6c83ad0, type: 2}
+  <Shape>k__BackingField: 0
 --- !u!1 &5009525262090926192
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,7 +853,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 4.9128723, y: 0.2721026, z: 0.50390625}
-  m_Center: {x: -0.0056915283, y: -0.066172004, z: -0.30664062}
+  m_Center: {x: -0.0056915283, y: -0.066172004, z: 0}
 --- !u!114 &5298029668239483608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -865,6 +867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.BuildingSocket
   <Type>k__BackingField: 1
+  <Shape>k__BackingField: 0
 --- !u!1 &9147639058227939116
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,6 +914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.BuildingSocket
   <Type>k__BackingField: 2
+  <Shape>k__BackingField: 0
 --- !u!65 &6064451438424022109
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -1,36 +1,87 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace EntangledShift
+public class Hammer : MonoBehaviour
 {
-    public class Hammer : MonoBehaviour
+    [Header("Settings")]
+    [SerializeField] private LayerMask _mask;
+    [SerializeField] private float _range;
+
+    [Header("Outline Visuals")]
+    [SerializeField] private Material _outlineMaterial;
+
+    private Ray _ray;
+    private RaycastHit _hit;
+    private Vector3 _cameraRay;
+    private Camera _camera;
+
+    private Transform _currentTarget;
+    private GameObject _currentOutlineObj;
+
+    private void Awake()
     {
-        [SerializeField] private LayerMask _mask;
-        [SerializeField] private float _range;
+        _cameraRay = new Vector3(Screen.width / 2f, Screen.height / 2f);
+        _camera = Camera.main;
+    }
 
-        private Ray _ray;
-        private RaycastHit _hit;
-        private Vector3 _cameraRay;
-        private Camera _camera;
+    private void Update()
+    {
+        _ray = _camera.ScreenPointToRay(_cameraRay);
 
+        Transform newTarget = null;
 
-        private void Awake()
+        if (Physics.Raycast(_ray, out _hit, _range, _mask))
         {
-            _cameraRay = new Vector3(Screen.height / 2f, Screen.width / 2f);
-            _camera = Camera.main;
-        }
+            newTarget = _hit.transform;
 
-        private void Update()
-        {
-            _ray = _camera.ScreenPointToRay(_cameraRay);
-
-            if (Physics.Raycast(_ray, out _hit, _range, _mask))
+            if (Keyboard.current.rKey.wasPressedThisFrame)
             {
-                if (Keyboard.current.rKey.wasPressedThisFrame)
-                {
-                    Destroy(_hit.collider.gameObject);
-                }
+                ClearOutline();
+                Destroy(_hit.collider.gameObject);
+                return;
             }
         }
+
+        if (newTarget != _currentTarget)
+        {
+            ClearOutline();
+            _currentTarget = newTarget;
+
+            if (_currentTarget != null)
+            {
+                CreateOutline(_currentTarget);
+            }
+        }
+    }
+
+    private void CreateOutline(Transform target)
+    {
+        MeshFilter targetMeshFilter = target.GetComponent<MeshFilter>();
+        if (targetMeshFilter == null || targetMeshFilter.sharedMesh == null)
+        {
+            return;
+        }
+
+        _currentOutlineObj = new GameObject("VisualOutline");
+        _currentOutlineObj.transform.SetParent(target, false);
+        _currentOutlineObj.transform.localPosition = Vector3.zero;
+        _currentOutlineObj.transform.localRotation = Quaternion.identity;
+        _currentOutlineObj.transform.localScale = Vector3.one;
+
+        MeshFilter mf = _currentOutlineObj.AddComponent<MeshFilter>();
+        mf.sharedMesh = targetMeshFilter.sharedMesh;
+
+        MeshRenderer mr = _currentOutlineObj.AddComponent<MeshRenderer>();
+        mr.sharedMaterial = _outlineMaterial;
+    }
+
+    private void ClearOutline()
+    {
+        if (_currentOutlineObj != null)
+        {
+            Destroy(_currentOutlineObj);
+            _currentOutlineObj = null;
+        }
+        _currentTarget = null;
     }
 }

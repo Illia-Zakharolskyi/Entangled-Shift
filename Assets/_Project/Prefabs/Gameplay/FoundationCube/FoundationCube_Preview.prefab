@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.BuildingSocket
   <Type>k__BackingField: 0
+  <Shape>k__BackingField: 0
 --- !u!65 &5224608788752653349
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -113,6 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.BuildingSocket
   <Type>k__BackingField: 0
+  <Shape>k__BackingField: 0
 --- !u!65 &3718784519983949656
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -180,6 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.BuildingSocket
   <Type>k__BackingField: 0
+  <Shape>k__BackingField: 0
 --- !u!65 &5480865259201825025
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -248,7 +251,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.FoundationPlacementHandler
   _data: {fileID: 11400000, guid: 48fc1da3346283c488c3d7fd385828b0, type: 2}
   _boxSize: {x: 5, y: 0.2, z: 5}
-  _groundLayer:
+  _heightSnapStep: 0.5
+  _minGroundOffset: -0.5
+  _maxGroundOffset: 0.5
+  _mask:
     serializedVersion: 2
     m_Bits: 64
 --- !u!1 &7703959084215370512
@@ -297,6 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.BuildingSocket
   <Type>k__BackingField: 0
+  <Shape>k__BackingField: 0
 --- !u!65 &3494239588798832024
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -26,7 +26,7 @@ namespace EntangledShift.Systems.Building
             }
 
             BuildStructure wallStructure = socket.transform.root.GetComponentInChildren<BuildStructure>();
-            if (wallStructure == null || wallStructure.Shape != StructureShape.Cube)
+            if (wallStructure == null || wallStructure.Shape != StructureShape.Square)
             {
                 return false;
             }

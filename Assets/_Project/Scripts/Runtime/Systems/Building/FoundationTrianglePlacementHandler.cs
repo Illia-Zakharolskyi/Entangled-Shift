@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,6 +8,7 @@ namespace EntangledShift.Systems.Building
     {
         [Header("Settings")]
         [SerializeField] private List<SocketType> _socketTypes = new() { SocketType.FoundationTriangle };
+        [SerializeField] private LayerMask _mask;
         [SerializeField] private GameObject _model;
 
         private bool _customRotation = false;
@@ -18,27 +18,45 @@ namespace EntangledShift.Systems.Building
             targetToConsume = null;
             _targetSocket = null;
 
-            BuildingSocket socket = hit.collider.GetComponent<BuildingSocket>();
-
-            if (socket != null)
+            if (_mask.Contains(hit.transform.gameObject.layer) &&
+                !hit.collider.TryGetComponent<BuildingSocket>(out _))
             {
-                if (socket.IsOccupied || !_socketTypes.Contains(socket.Type))
+                return false;
+            }
+
+            if (hit.collider.TryGetComponent<BuildingSocket>(out var socket))
+            {
+                if (socket.IsOccupied || !_socketTypes.Contains(socket.Type) || socket.Shape != StructureShape.Triangle)
                 {
                     return false;
                 }
+
                 _targetSocket = socket;
             }
+            else
+            {
+                Vector3 targetPos = GetSnappedPosition(hit.point);
+                float heightDifference = targetPos.y - hit.point.y;
 
-            int hitCount = Physics.OverlapBoxNonAlloc(_model.transform.position, _boxSize / 2.01f, _hitCache, Quaternion.identity, _data.ObstacleMask);
+                if (heightDifference < _minGroundOffset || heightDifference > _maxGroundOffset)
+                {
+                    return false;
+                }
+            }
+
+            int hitCount = Physics.OverlapBoxNonAlloc(_model.transform.position, _boxSize / 2.01f, _hitBuffer, Quaternion.identity, _data.ObstacleMask);
 
             if (hitCount > 0)
             {
                 for (int i = 0; i < hitCount; i++)
                 {
-                    Collider detectedCol = _hitCache[i];
-                    if (detectedCol == null) continue;
+                    Collider detectedCol = _hitBuffer[i];
+                    if (detectedCol == null)
+                    {
+                        continue;
+                    }
 
-                    if (detectedCol.TryGetComponent<BuildStructure>(out var obstacleStructure))
+                    if (detectedCol.TryGetComponent<BuildStructure>(out _))
                     {
                         if (_targetSocket != null)
                         {
@@ -48,11 +66,6 @@ namespace EntangledShift.Systems.Building
 
                     return false;
                 }
-            }
-
-            if (hit.collider.TryGetComponent<BuildStructure>(out var structure) && _targetSocket == null)
-            {
-                return false;
             }
 
             return true;
@@ -76,13 +89,11 @@ namespace EntangledShift.Systems.Building
             }
             else
             {
-                float snappedX = Mathf.Round(hit.point.x / _boxSize.x) * _boxSize.x;
-                float snappedZ = Mathf.Round(hit.point.z / _boxSize.x) * _boxSize.x;
-
-                float snappedY = hit.point.y;
-
-                itemPreview.transform.position = new Vector3(snappedX, snappedY, snappedZ);
-                if (!_customRotation) itemPreview.transform.rotation = Quaternion.identity;
+                itemPreview.transform.position = GetSnappedPosition(hit.point);
+                if (!_customRotation)
+                {
+                    itemPreview.transform.rotation = Quaternion.identity;
+                }
             }
         }
 
@@ -103,7 +114,9 @@ namespace EntangledShift.Systems.Building
             Gizmos.color = Color.red;
 
             if (Application.isPlaying)
+            {
                 Gizmos.DrawWireCube(_model.transform.position, _boxSize);
+            }
         }
     }
 }

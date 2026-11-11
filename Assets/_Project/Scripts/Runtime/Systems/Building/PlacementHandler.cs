@@ -8,10 +8,15 @@ namespace EntangledShift.Systems.Building
         [SerializeField] protected BuildableItemData _data;
         [SerializeField] protected Vector3 _boxSize;
 
+        [Header("Grid & Terrain Settings")]
+        [SerializeField] protected float _heightSnapStep = 1.5f;
+        [SerializeField] protected float _minGroundOffset = -0.5f;
+        [SerializeField] protected float _maxGroundOffset = 2.0f;
+
         protected Renderer _renderer;
         protected MaterialPropertyBlock _block;
-        protected BuildingSocket _targetSocket; // violation of ISP and LSP(not every child needs this), but kept for the sake of greater DRY
-        protected Collider[] _hitCache;
+        protected BuildingSocket _targetSocket;
+        protected Collider[] _hitBuffer = new Collider[3];
 
         protected virtual void Awake()
         {
@@ -19,12 +24,14 @@ namespace EntangledShift.Systems.Building
             {
                 foreach (Transform child in transform)
                 {
-                    if (child.TryGetComponent<Renderer>(out _renderer)) break;
+                    if (child.TryGetComponent<Renderer>(out _renderer))
+                    {
+                        break;
+                    }
                 }
             }
 
             _block = new MaterialPropertyBlock();
-            _hitCache = new Collider[2];
 
             if (_renderer == null)
             {
@@ -40,7 +47,6 @@ namespace EntangledShift.Systems.Building
         {
             if (!Physics.Raycast(ray, out hit, buildRange, _data.AllowedSurfaces))
             {
-                
                 return false;
             }
 
@@ -54,6 +60,15 @@ namespace EntangledShift.Systems.Building
             _renderer.GetPropertyBlock(_block);
             _block.SetColor(_data.BaseColorId, curr);
             _renderer.SetPropertyBlock(_block);
+        }
+
+        protected virtual Vector3 GetSnappedPosition(Vector3 point)
+        {
+            float snappedX = Mathf.Round(point.x / _boxSize.x) * _boxSize.x;
+            float snappedZ = Mathf.Round(point.z / _boxSize.z) * _boxSize.z;
+            float snappedY = Mathf.Round(point.y / _heightSnapStep) * _heightSnapStep;
+
+            return new Vector3(snappedX, snappedY, snappedZ);
         }
     }
 }

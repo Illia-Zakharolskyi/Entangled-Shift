@@ -10,20 +10,27 @@ namespace EntangledShift.Systems.Building
         [SerializeField] private Camera _mainCamera;
 
         [Header("Settings")]
-        [SerializeField] private float _buildRange;
+        [SerializeField] private float BuildRange;
+        public bool BuildingEnabled { get; set; } = true;
 
         private BuildState _state;
 
         private BuildableItemData _itemData;
         private GameObject _itemPreview;
         private IPlacementHandler _itemValidator;
+        private Vector3 _rayPoint;
 
-        void Update()
+        private void Awake()
+        {
+            _rayPoint = new Vector3(Screen.width / 2f, Screen.height / 2f);
+        }
+
+        private void Update()
         {
             UpdateStateMachine();
         }
 
-        void UpdateStateMachine()
+        private void UpdateStateMachine()
         {
             CheckActiveSlot();
 
@@ -43,7 +50,7 @@ namespace EntangledShift.Systems.Building
             }
         }
 
-        void CheckActiveSlot()
+        private void CheckActiveSlot()
         {
             ItemData activeSlotData = _inventoryData.activeSlot.item;
 
@@ -70,19 +77,26 @@ namespace EntangledShift.Systems.Building
             }
         }
 
-        void ResetItem()
+        private void ResetItem()
         {
-            if (_itemPreview != null) Destroy(_itemPreview);
+            if (_itemPreview != null)
+            {
+                Destroy(_itemPreview);
+            }
+
             _itemData = null;
             _itemPreview = null;
             _itemValidator = null;
         }
 
-        void HandleActiveBuilding()
+        private void HandleActiveBuilding()
         {
-            if (_itemValidator == null) return;
+            if (_itemValidator == null)
+            {
+                return;
+            }
 
-            Ray ray = _mainCamera.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
+            Ray ray = _mainCamera.ScreenPointToRay(_rayPoint);
 
             _itemPreview.SetActive(true);
 
@@ -90,7 +104,7 @@ namespace EntangledShift.Systems.Building
             GameObject targetToConsume = null;
             RaycastHit hit;
 
-            bool hasHit = _itemValidator.Raycast(ray, out hit, _buildRange);
+            bool hasHit = _itemValidator.Raycast(ray, out hit, BuildRange);
 
             if (hasHit)
             {
@@ -99,7 +113,7 @@ namespace EntangledShift.Systems.Building
             else
             {
                 hit = new RaycastHit();
-                hit.point = ray.GetPoint(_buildRange);
+                hit.point = ray.GetPoint(BuildRange);
             }
 
             UpdatePreview(hit, canPlace);
@@ -113,6 +127,11 @@ namespace EntangledShift.Systems.Building
 
         private void ExecuteBuild(GameObject targetToConsume)
         {
+            if (!BuildingEnabled)
+            {
+                return;
+            }
+
             if (targetToConsume != null)
             {
                 Destroy(targetToConsume);

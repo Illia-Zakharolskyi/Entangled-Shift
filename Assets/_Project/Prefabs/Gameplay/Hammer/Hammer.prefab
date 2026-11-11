@@ -49,6 +49,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _range: 10
+  _outlineMaterial: {fileID: 2100000, guid: 881cf82c3a10df64892d1896117fce0b, type: 2}
 --- !u!1 &9021151296955087512
 GameObject:
   m_ObjectHideFlags: 0

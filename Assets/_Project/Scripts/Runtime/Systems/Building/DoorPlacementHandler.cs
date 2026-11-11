@@ -14,7 +14,7 @@ namespace EntangledShift
             _renderer = GetComponentInChildren<Renderer>();
 
             _block = new MaterialPropertyBlock();
-            _hitCache = new Collider[2];
+            _hitBuffer = new Collider[2];
 
             if (_renderer == null)
             {

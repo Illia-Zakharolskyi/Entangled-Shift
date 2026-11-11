@@ -26,7 +26,7 @@ namespace EntangledShift.Systems.Building
             }
 
             BuildStructure wallStructure = socket.transform.root.GetComponentInChildren<BuildStructure>();
-            if (wallStructure == null || wallStructure.Shape != StructureShape.Cube && socket.Type != SocketType.WallTopOutside)
+            if (wallStructure == null || wallStructure.Shape != StructureShape.Square && socket.Type != SocketType.WallTopOutside)
             {
                 return false;
             }
@@ -59,6 +59,7 @@ namespace EntangledShift.Systems.Building
             }
 
             GameObject newWall = Instantiate(_data.BuildPrefab, position, rotation);
+
             newWall.transform.localScale = Vector3.one;
 
             if (_targetSocket != null)
