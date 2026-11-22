@@ -1,87 +1,122 @@
+using EntangledShift.Runtime.Systems;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Hammer : MonoBehaviour
+namespace EntangledShift.Runtime
 {
-    [Header("Settings")]
-    [SerializeField] private LayerMask _mask;
-    [SerializeField] private float _range;
-
-    [Header("Outline Visuals")]
-    [SerializeField] private Material _outlineMaterial;
-
-    private Ray _ray;
-    private RaycastHit _hit;
-    private Vector3 _cameraRay;
-    private Camera _camera;
-
-    private Transform _currentTarget;
-    private GameObject _currentOutlineObj;
-
-    private void Awake()
+    public class Hammer : MonoBehaviour
     {
-        _cameraRay = new Vector3(Screen.width / 2f, Screen.height / 2f);
-        _camera = Camera.main;
-    }
+        [Header("Settings")]
+        [SerializeField] private LayerMask _mask;
+        [SerializeField] private float _range;
+        [SerializeField] AudioClip _clip;
 
-    private void Update()
-    {
-        _ray = _camera.ScreenPointToRay(_cameraRay);
+        [Header("Outline Visuals")]
+        [SerializeField] private Material _outlineMaterial;
 
-        Transform newTarget = null;
+        private Ray _ray;
+        private RaycastHit _hit;
+        private Vector3 _cameraRay;
+        private Camera _camera;
 
-        if (Physics.Raycast(_ray, out _hit, _range, _mask))
+        private Transform _currentTarget;
+        private readonly List<GameObject> _currentOutlineObjs = new();
+
+        private void Awake()
         {
-            newTarget = _hit.transform;
+            _cameraRay = new Vector3(Screen.width / 2f, Screen.height / 2f);
+            _camera = Camera.main;
+        }
 
-            if (Keyboard.current.rKey.wasPressedThisFrame)
+        private void Update()
+        {
+            _ray = _camera.ScreenPointToRay(_cameraRay);
+
+            Transform newTarget = null;
+
+            if (Physics.Raycast(_ray, out _hit, _range, _mask))
+            {
+                newTarget = _hit.transform;
+
+                if (Keyboard.current.rKey.wasPressedThisFrame)
+                {
+                    ClearOutline();
+                    if (AudioController.Instance) AudioController.Instance.PlayOneShotSFXSound(_clip);
+                    Destroy(_hit.collider.gameObject);
+                    return;
+                }
+            }
+
+            if (newTarget != _currentTarget)
             {
                 ClearOutline();
-                Destroy(_hit.collider.gameObject);
+                _currentTarget = newTarget;
+
+                if (_currentTarget != null)
+                {
+                    CreateOutline(_currentTarget);
+                }
+            }
+        }
+
+        private void CreateOutline(Transform target)
+        {
+            if (target.parent != null)
+            {
+                MeshFilter[] parentMeshFilters = target.parent.GetComponentsInChildren<MeshFilter>();
+                if (parentMeshFilters.Length > 1)
+                {
+                    foreach (MeshFilter mf in parentMeshFilters)
+                    {
+                        if (mf == null || mf.sharedMesh == null || mf.gameObject.name == "VisualOutline")
+                        {
+                            continue;
+                        }
+
+                        _currentOutlineObjs.Add(CreateSingleOutline(mf.transform, mf.sharedMesh));
+                    }
+                    return;
+                }
+            }
+
+            MeshFilter targetMeshFilter = target.GetComponent<MeshFilter>();
+            if (targetMeshFilter == null || targetMeshFilter.sharedMesh == null)
+            {
                 return;
             }
+
+            _currentOutlineObjs.Add(CreateSingleOutline(target, targetMeshFilter.sharedMesh));
         }
 
-        if (newTarget != _currentTarget)
+        private GameObject CreateSingleOutline(Transform parentTarget, Mesh sharedMesh)
         {
-            ClearOutline();
-            _currentTarget = newTarget;
+            GameObject outlineObj = new GameObject("VisualOutline");
+            outlineObj.transform.SetParent(parentTarget, false);
+            outlineObj.transform.localPosition = Vector3.zero;
+            outlineObj.transform.localRotation = Quaternion.identity;
+            outlineObj.transform.localScale = Vector3.one;
 
-            if (_currentTarget != null)
+            MeshFilter mf = outlineObj.AddComponent<MeshFilter>();
+            mf.sharedMesh = sharedMesh;
+
+            MeshRenderer mr = outlineObj.AddComponent<MeshRenderer>();
+            mr.sharedMaterial = _outlineMaterial;
+
+            return outlineObj;
+        }
+
+        private void ClearOutline()
+        {
+            for (int i = 0; i < _currentOutlineObjs.Count; i++)
             {
-                CreateOutline(_currentTarget);
+                if (_currentOutlineObjs[i] != null)
+                {
+                    Destroy(_currentOutlineObjs[i]);
+                }
             }
+            _currentOutlineObjs.Clear();
+            _currentTarget = null;
         }
-    }
-
-    private void CreateOutline(Transform target)
-    {
-        MeshFilter targetMeshFilter = target.GetComponent<MeshFilter>();
-        if (targetMeshFilter == null || targetMeshFilter.sharedMesh == null)
-        {
-            return;
-        }
-
-        _currentOutlineObj = new GameObject("VisualOutline");
-        _currentOutlineObj.transform.SetParent(target, false);
-        _currentOutlineObj.transform.localPosition = Vector3.zero;
-        _currentOutlineObj.transform.localRotation = Quaternion.identity;
-        _currentOutlineObj.transform.localScale = Vector3.one;
-
-        MeshFilter mf = _currentOutlineObj.AddComponent<MeshFilter>();
-        mf.sharedMesh = targetMeshFilter.sharedMesh;
-
-        MeshRenderer mr = _currentOutlineObj.AddComponent<MeshRenderer>();
-        mr.sharedMaterial = _outlineMaterial;
-    }
-
-    private void ClearOutline()
-    {
-        if (_currentOutlineObj != null)
-        {
-            Destroy(_currentOutlineObj);
-            _currentOutlineObj = null;
-        }
-        _currentTarget = null;
     }
 }

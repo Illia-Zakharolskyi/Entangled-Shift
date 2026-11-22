@@ -1,4 +1,5 @@
 using DG.Tweening;
+using EntangledShift.Runtime.Systems;
 using UnityEngine;
 
 namespace EntangledShift
@@ -10,6 +11,7 @@ namespace EntangledShift
         [SerializeField] private float _animationDuration = 0.5f;
         [SerializeField] private Ease _animationEase = Ease.OutQuad;
         [SerializeField] private LayerMask _playerLayer;
+        [SerializeField] AudioClip _clip;
 
         private bool _isOpen = false;
         private bool _isAnimating = false;
@@ -32,6 +34,7 @@ namespace EntangledShift
         {
             if (_isAnimating) return;
 
+            if (AudioController.Instance) AudioController.Instance.PlayOneShotSFXSound(_clip);
             ToggleDoor();
         }
 
@@ -49,7 +52,7 @@ namespace EntangledShift
             if (hits.Length > 0)
             {
                 Transform player = hits[0].transform;
-                
+
                 // Проверяем, с какой стороны от двери находится игрок (через скалярное произведение)
                 Vector3 toPlayer = player.position - transform.position;
                 float dot = Vector3.Dot(transform.forward, toPlayer);
@@ -67,7 +70,8 @@ namespace EntangledShift
             // Запускаем анимацию через DOTween
             transform.DOLocalRotateQuaternion(targetRotation, _animationDuration)
                 .SetEase(_animationEase)
-                .OnComplete(() => {
+                .OnComplete(() =>
+                {
                     _isAnimating = false;
                 });
         }

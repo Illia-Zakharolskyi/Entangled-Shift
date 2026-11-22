@@ -26,7 +26,7 @@ namespace EntangledShift.Systems.Building
             }
 
             BuildStructure wallStructure = socket.transform.root.GetComponentInChildren<BuildStructure>();
-            if (wallStructure == null || wallStructure.Shape != StructureShape.Triangle)
+            if (wallStructure == null || wallStructure.Shape != StructureShape.Triangle || !wallStructure.IsWallBuilt)
             {
                 return false;
             }
@@ -63,7 +63,7 @@ namespace EntangledShift.Systems.Building
                 _targetSocket.Occupy();
             }
 
-            GameObject newCeiling = Instantiate(_data.BuildPrefab, position, rotation);
+            _ = Instantiate(_data.BuildPrefab, position, rotation);
         }
     }
 }

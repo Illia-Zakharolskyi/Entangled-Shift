@@ -7,6 +7,8 @@ namespace EntangledShift.Systems.Building
     {
         [Header("Settings")]
         [SerializeField] private List<SocketType> _socketTypes = new() { SocketType.WallTopInner };
+        [SerializeField] private float _animationDuration;
+        [SerializeField] private float _dropheight; // how high up the part spawns before it falls
 
         public override bool CanPlace(RaycastHit hit, out GameObject targetToConsume)
         {
@@ -64,6 +66,7 @@ namespace EntangledShift.Systems.Building
             }
 
             GameObject newCeiling = Instantiate(_data.BuildPrefab, position, rotation);
+            Animate(newCeiling, _animationDuration, _dropheight);
         }
     }
 }

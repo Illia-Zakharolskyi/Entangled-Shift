@@ -592,6 +592,7 @@ MonoBehaviour:
   _inventoryData: {fileID: 11400000, guid: 3598e74f01d39454a849e7500ae52b34, type: 2}
   _inventoryEvents: {fileID: 11400000, guid: a892967159f37b04a829932d8ffe2adf, type: 2}
   _mainCamera: {fileID: 1618777348}
+  _clip: {fileID: 8300000, guid: cf2361f4d86018c45926aec63f77f088, type: 3}
   BuildRange: 10
 --- !u!1001 &63605700
 PrefabInstance:
@@ -3196,14 +3197,17 @@ MonoBehaviour:
   - _item: {fileID: 11400000, guid: 438774a518b52004680635432ceee5e9, type: 2}
     _amount: 64
     <IsActive>k__BackingField: 1
-  - _item: {fileID: 11400000, guid: 118919ba055d1e64dbfe6ce556a0d4ac, type: 2}
-    _amount: 1
-    <IsActive>k__BackingField: 1
   - _item: {fileID: 11400000, guid: ce19fda0821a69c47a3284bc5767393e, type: 2}
     _amount: 64
     <IsActive>k__BackingField: 1
   - _item: {fileID: 11400000, guid: 29be08ce7a0f1f64ba4e134c32b19d05, type: 2}
     _amount: 64
+    <IsActive>k__BackingField: 0
+  - _item: {fileID: 11400000, guid: 442a3a0167e0b2a489140e8b98208d7e, type: 2}
+    _amount: 64
+    <IsActive>k__BackingField: 1
+  - _item: {fileID: 11400000, guid: 118919ba055d1e64dbfe6ce556a0d4ac, type: 2}
+    _amount: 1
     <IsActive>k__BackingField: 1
 --- !u!1001 &364835131
 PrefabInstance:
@@ -15994,8 +15998,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 0.1
+  far clip plane: 250
   field of view: 60
   orthographic: 0
   orthographic size: 5

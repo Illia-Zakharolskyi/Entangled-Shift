@@ -18,8 +18,8 @@ TagManager:
   - BuildStructure
   - Interactable
   - BuildingSocketTriangle
-  - 
-  - 
+  - WallSocketCube
+  - WallSocketTriangle
   - 
   - 
   - 

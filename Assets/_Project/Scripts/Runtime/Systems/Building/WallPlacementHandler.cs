@@ -7,6 +7,9 @@ namespace EntangledShift.Systems.Building
     {
         [Header("Settings")]
         [SerializeField] private List<SocketType> _socketTypes = new() { SocketType.FoundationTop, SocketType.WallTopOutside };
+        [SerializeField] private float _animationDuration;
+        [SerializeField] private float _dropheight; // how high up the part spawns before it falls
+        private BuildStructure _wallStructure;
 
         public override bool CanPlace(RaycastHit hit, out GameObject targetToConsume)
         {
@@ -26,12 +29,13 @@ namespace EntangledShift.Systems.Building
             }
 
             BuildStructure wallStructure = socket.transform.root.GetComponentInChildren<BuildStructure>();
-            if (wallStructure == null || wallStructure.Shape != StructureShape.Square && socket.Type != SocketType.WallTopOutside)
+            if (wallStructure == null)
             {
                 return false;
             }
 
             _targetSocket = socket;
+            _wallStructure = wallStructure;
             return true;
         }
 
@@ -58,18 +62,8 @@ namespace EntangledShift.Systems.Building
                 _targetSocket.Occupy();
             }
 
-            GameObject newWall = Instantiate(_data.BuildPrefab, position, rotation);
-
-            newWall.transform.localScale = Vector3.one;
-
-            if (_targetSocket != null)
-            {
-                BuildStructure wallStructure = newWall.GetComponentInChildren<BuildStructure>();
-                if (wallStructure != null)
-                {
-                    wallStructure.Shape = _targetSocket.Shape;
-                }
-            }
+            GameObject obj = Instantiate(_data.BuildPrefab, position, rotation);
+            Animate(obj, _animationDuration, _dropheight);
         }
     }
 }

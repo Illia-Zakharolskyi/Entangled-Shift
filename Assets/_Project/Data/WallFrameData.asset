@@ -19,11 +19,14 @@ MonoBehaviour:
   _maxStackSize: 64
   _description: 
   _prefabToEquip: {fileID: 583192182429340293, guid: 640b2c2bc0afee743a7b5585dd8d1444, type: 3}
-  _prefabToDrop: {fileID: 8322417980844106931, guid: 12baf8152e1fccb40a4e3bd334342123, type: 3}
+  _prefabToDrop: {fileID: 2235391385096002164, guid: 11b2d5e81384c5c47a26b3f701c3b9a6, type: 3}
   _buildPrefab: {fileID: 8736679111499146948, guid: c4e86283de13fd1419981892482f3f8b, type: 3}
   _previewPrefab: {fileID: 1049550394982798178, guid: b9491b67be43a994c801f6a1ee232202, type: 3}
   _allowedSurfaces:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 12800
+  <ObstacleMask>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 0
   <ValidColor>k__BackingField: {r: 0, g: 1, b: 0, a: 0.5}
   <InvalidColor>k__BackingField: {r: 1, g: 0, b: 0, a: 0.5}

@@ -1,3 +1,4 @@
+using EntangledShift.Runtime.Systems;
 using UnityEngine;
 
 namespace EntangledShift.Systems.Building
@@ -8,6 +9,7 @@ namespace EntangledShift.Systems.Building
         [SerializeField] private InventoryData _inventoryData;
         [SerializeField] private InventoryEvents _inventoryEvents;
         [SerializeField] private Camera _mainCamera;
+        [SerializeField] private AudioClip _clip;
 
         [Header("Settings")]
         [SerializeField] private float BuildRange;
@@ -18,12 +20,6 @@ namespace EntangledShift.Systems.Building
         private BuildableItemData _itemData;
         private GameObject _itemPreview;
         private IPlacementHandler _itemValidator;
-        private Vector3 _rayPoint;
-
-        private void Awake()
-        {
-            _rayPoint = new Vector3(Screen.width / 2f, Screen.height / 2f);
-        }
 
         private void Update()
         {
@@ -96,7 +92,8 @@ namespace EntangledShift.Systems.Building
                 return;
             }
 
-            Ray ray = _mainCamera.ScreenPointToRay(_rayPoint);
+            Vector3 screenCenter = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f);
+            Ray ray = _mainCamera.ScreenPointToRay(screenCenter);
 
             _itemPreview.SetActive(true);
 
@@ -106,16 +103,21 @@ namespace EntangledShift.Systems.Building
 
             bool hasHit = _itemValidator.Raycast(ray, out hit, BuildRange);
 
-            if (hasHit)
-            {
-                canPlace = _itemValidator.CanPlace(hit, out targetToConsume);
-            }
-            else
+            if (!hasHit)
             {
                 hit = new RaycastHit();
                 hit.point = ray.GetPoint(BuildRange);
             }
 
+            // Position the preview first so any transform-based checks inside CanPlace use the current target spot
+            UpdatePreview(hit, false);
+
+            if (hasHit)
+            {
+                canPlace = _itemValidator.CanPlace(hit, out targetToConsume);
+            }
+
+            // Apply final placement state (position, socket snap, and valid/invalid color)
             UpdatePreview(hit, canPlace);
 
             if (canPlace && Input.GetMouseButtonDown(0))
@@ -123,7 +125,6 @@ namespace EntangledShift.Systems.Building
                 ExecuteBuild(targetToConsume);
             }
         }
-
 
         private void ExecuteBuild(GameObject targetToConsume)
         {
@@ -137,6 +138,7 @@ namespace EntangledShift.Systems.Building
                 Destroy(targetToConsume);
             }
 
+            if (AudioController.Instance != null) AudioController.Instance.PlayOneShotSFXSound(_clip);
             _itemValidator.Build(_itemPreview.transform.position, _itemPreview.transform.rotation);
             _inventoryEvents.InvokeActiveSlotRemove(1);
         }

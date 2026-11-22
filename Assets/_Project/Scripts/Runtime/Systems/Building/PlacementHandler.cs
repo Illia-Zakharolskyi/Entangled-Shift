@@ -1,8 +1,9 @@
+using DG.Tweening;
 using UnityEngine;
 
 namespace EntangledShift.Systems.Building
 {
-    public abstract class PlacementHandler : MonoBehaviour, IPlacementHandler
+    public abstract class PlacementHandler : MonoBehaviour, IPlacementHandler, IAnimationable
     {
         [Header("Base")]
         [SerializeField] protected BuildableItemData _data;
@@ -13,27 +14,18 @@ namespace EntangledShift.Systems.Building
         [SerializeField] protected float _minGroundOffset = -0.5f;
         [SerializeField] protected float _maxGroundOffset = 2.0f;
 
-        protected Renderer _renderer;
+        protected Renderer[] _renderers;
         protected MaterialPropertyBlock _block;
         protected BuildingSocket _targetSocket;
-        protected Collider[] _hitBuffer = new Collider[3];
+        protected Collider[] _hitBuffer = new Collider[5];
 
         protected virtual void Awake()
         {
-            if (!TryGetComponent<Renderer>(out _renderer))
-            {
-                foreach (Transform child in transform)
-                {
-                    if (child.TryGetComponent<Renderer>(out _renderer))
-                    {
-                        break;
-                    }
-                }
-            }
+            _renderers = GetComponentsInChildren<Renderer>(true);
 
             _block = new MaterialPropertyBlock();
 
-            if (_renderer == null)
+            if (_renderers.Length == 0)
             {
                 Debug.Log($"No Renderer found: {name}");
             }
@@ -57,9 +49,14 @@ namespace EntangledShift.Systems.Building
         {
             Color curr = canBuild ? _data.ValidColor : _data.InvalidColor;
 
-            _renderer.GetPropertyBlock(_block);
-            _block.SetColor(_data.BaseColorId, curr);
-            _renderer.SetPropertyBlock(_block);
+            foreach (var renderer in _renderers)
+            {
+                if (renderer == null) continue;
+
+                renderer.GetPropertyBlock(_block);
+                _block.SetColor(_data.BaseColorId, curr);
+                renderer.SetPropertyBlock(_block);
+            }
         }
 
         protected virtual Vector3 GetSnappedPosition(Vector3 point)
@@ -69,6 +66,38 @@ namespace EntangledShift.Systems.Building
             float snappedY = Mathf.Round(point.y / _heightSnapStep) * _heightSnapStep;
 
             return new Vector3(snappedX, snappedY, snappedZ);
+        }
+
+        public virtual void Animate(GameObject buildObject, float duration, float dropHeight)
+        {
+            BuildStructure structure = buildObject.GetComponentInChildren<BuildStructure>();
+            if (structure == null) structure = buildObject.GetComponent<BuildStructure>();
+            if (structure == null) return;
+
+            Transform structureTransform = structure.transform;
+            int childCount = structureTransform.childCount;
+            if (childCount == 0) return;
+
+            float pieceDuration = duration * 0.5f;
+            float delayStep = (duration - pieceDuration) / Mathf.Max(1, childCount - 1);
+
+            Sequence buildSequence = DOTween.Sequence();
+
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform piece = structureTransform.GetChild(i);
+
+                Vector3 targetPos = piece.localPosition;
+                Vector3 targetScale = piece.localScale;
+
+                piece.localScale = Vector3.zero;
+                piece.localPosition = targetPos + Vector3.up * dropHeight;
+
+                float startTime = i * delayStep;
+
+                buildSequence.Insert(startTime, piece.DOScale(targetScale, pieceDuration).SetEase(Ease.OutBack));
+                buildSequence.Insert(startTime, piece.DOLocalMove(targetPos, pieceDuration).SetEase(Ease.OutQuad));
+            }
         }
     }
 }

@@ -19,9 +19,9 @@ MonoBehaviour:
   _maxStackSize: 64
   _description: 
   _prefabToEquip: {fileID: 583192182429340293, guid: 640b2c2bc0afee743a7b5585dd8d1444, type: 3}
-  _prefabToDrop: {fileID: 8322417980844106931, guid: 12baf8152e1fccb40a4e3bd334342123, type: 3}
-  _buildPrefab: {fileID: 4810752024569798141, guid: 67904bee739570641991d176d509a974, type: 3}
-  _previewPrefab: {fileID: 5063770725449986776, guid: a42edbb30b0c3c14fb1503bac495ca41, type: 3}
+  _prefabToDrop: {fileID: 3467951594498265519, guid: 12baf8152e1fccb40a4e3bd334342123, type: 3}
+  _buildPrefab: {fileID: 6429635847791760856, guid: 67904bee739570641991d176d509a974, type: 3}
+  _previewPrefab: {fileID: 5230618686169845458, guid: a42edbb30b0c3c14fb1503bac495ca41, type: 3}
   _allowedSurfaces:
     serializedVersion: 2
     m_Bits: 2816

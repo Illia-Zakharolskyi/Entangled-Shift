@@ -19,12 +19,12 @@ MonoBehaviour:
   _maxStackSize: 64
   _description: Freaky ahh wall
   _prefabToEquip: {fileID: 7789341743097310998, guid: 6c38714b4536370448c4834761259acb, type: 3}
-  _prefabToDrop: {fileID: 3035890883434793981, guid: d5d0cf9ad3f974e44ae7391bf1b27873, type: 3}
+  _prefabToDrop: {fileID: 8208169917303319742, guid: d5d0cf9ad3f974e44ae7391bf1b27873, type: 3}
   _buildPrefab: {fileID: 8036789158512983539, guid: 7aac6e0d542789245af4ab6c325cac65, type: 3}
   _previewPrefab: {fileID: 5820644363949135062, guid: 15f5554dada23324785e50eac2117a74, type: 3}
   _allowedSurfaces:
     serializedVersion: 2
-    m_Bits: 2816
+    m_Bits: 13056
   <ObstacleMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 0

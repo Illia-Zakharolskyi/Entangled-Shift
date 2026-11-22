@@ -8,19 +8,8 @@ namespace EntangledShift
     {
         [Header("Settings")]
         [SerializeField] private List<SocketType> _socketTypes = new() { SocketType.WallDoorway };
-
-        protected override void Awake()
-        {
-            _renderer = GetComponentInChildren<Renderer>();
-
-            _block = new MaterialPropertyBlock();
-            _hitBuffer = new Collider[2];
-
-            if (_renderer == null)
-            {
-                Debug.Log($"No Renderer found: {name}");
-            }
-        }
+        [SerializeField] private float _animationDuration;
+        [SerializeField] private float _dropheight; // how high up the part spawns before it falls
 
         public override bool CanPlace(RaycastHit hit, out GameObject targetToConsume)
         {
@@ -71,6 +60,7 @@ namespace EntangledShift
 
             GameObject newWall = Instantiate(_data.BuildPrefab, position, rotation);
             newWall.transform.localScale = Vector3.one;
+            Animate(newWall, _animationDuration, _dropheight);
         }
     }
 }

@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.BuildingSocket
   <Type>k__BackingField: 0
-  <Structure>k__BackingField: {fileID: 0}
+  <Shape>k__BackingField: 0
 --- !u!1 &1739282245083774272
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.BuildingSocket
   <Type>k__BackingField: 0
-  <Structure>k__BackingField: {fileID: 0}
+  <Shape>k__BackingField: 0
 --- !u!1 &1835662592921902880
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,43 +316,43 @@ MonoBehaviour:
   - m_Vertices: 080000000a00000010000000
   m_SharedTextures: []
   m_Positions:
-  - {x: -2.5, y: -2.5, z: -0.1}
-  - {x: 2.5, y: -2.5, z: -0.1}
-  - {x: 0, y: 2.5, z: -0.1}
-  - {x: 2.5, y: -2.5, z: -0.1}
-  - {x: 2.5, y: -2.5, z: 0.1}
-  - {x: 0, y: 2.5, z: -0.1}
-  - {x: 0, y: 2.5, z: 0.1}
-  - {x: 2.5, y: -2.5, z: 0.1}
-  - {x: -2.5, y: -2.5, z: 0.1}
-  - {x: 0, y: 2.5, z: 0.1}
-  - {x: -2.5, y: -2.5, z: 0.1}
-  - {x: -2.5, y: -2.5, z: -0.1}
-  - {x: 0, y: 2.5, z: 0.1}
-  - {x: 0, y: 2.5, z: -0.1}
-  - {x: -2.5, y: -2.5, z: -0.1}
-  - {x: 2.5, y: -2.5, z: -0.1}
-  - {x: -2.5, y: -2.5, z: 0.1}
-  - {x: 2.5, y: -2.5, z: 0.1}
+  - {x: -2.52, y: -2.15, z: -0.105}
+  - {x: 2.52, y: -2.15, z: -0.105}
+  - {x: 0, y: 2.15, z: -0.105}
+  - {x: 2.52, y: -2.15, z: -0.105}
+  - {x: 2.52, y: -2.15, z: 0.105}
+  - {x: 0, y: 2.15, z: -0.105}
+  - {x: 0, y: 2.15, z: 0.105}
+  - {x: 2.52, y: -2.15, z: 0.105}
+  - {x: -2.52, y: -2.15, z: 0.105}
+  - {x: 0, y: 2.15, z: 0.105}
+  - {x: -2.52, y: -2.15, z: 0.105}
+  - {x: -2.52, y: -2.15, z: -0.105}
+  - {x: 0, y: 2.15, z: 0.105}
+  - {x: 0, y: 2.15, z: -0.105}
+  - {x: -2.52, y: -2.15, z: -0.105}
+  - {x: 2.52, y: -2.15, z: -0.105}
+  - {x: -2.52, y: -2.15, z: 0.105}
+  - {x: 2.52, y: -2.15, z: 0.105}
   m_Textures0:
-  - {x: -2.5, y: -2.5}
-  - {x: 2.5, y: -2.5}
-  - {x: 0, y: 2.5}
-  - {x: -0.1, y: -3.354102}
-  - {x: 0.1, y: -3.354102}
-  - {x: -0.1, y: 2.236068}
-  - {x: 0.1, y: 2.236068}
-  - {x: -2.5, y: -2.5}
-  - {x: 2.5, y: -2.5}
-  - {x: 0, y: 2.5}
-  - {x: -0.1, y: -3.354102}
-  - {x: 0.1, y: -3.354102}
-  - {x: -0.1, y: 2.236068}
-  - {x: 0.1, y: 2.236068}
-  - {x: 2.5, y: -0.1}
-  - {x: -2.5, y: -0.1}
-  - {x: 2.5, y: 0.1}
-  - {x: -2.5, y: 0.1}
+  - {x: -2.52, y: -2.15}
+  - {x: 2.52, y: -2.15}
+  - {x: 0, y: 2.15}
+  - {x: -0.105, y: -3.1290839}
+  - {x: 0.105, y: -3.1290839}
+  - {x: -0.105, y: 1.8549304}
+  - {x: 0.105, y: 1.8549304}
+  - {x: -2.52, y: -2.15}
+  - {x: 2.52, y: -2.15}
+  - {x: 0, y: 2.15}
+  - {x: -0.105, y: -3.1290839}
+  - {x: 0.105, y: -3.1290839}
+  - {x: -0.105, y: 1.8549304}
+  - {x: 0.105, y: 1.8549304}
+  - {x: 2.52, y: -0.105}
+  - {x: -2.52, y: -0.105}
+  - {x: 2.52, y: 0.105}
+  - {x: -2.52, y: 0.105}
   m_Textures2: []
   m_Textures3: []
   m_Tangents:
@@ -383,7 +383,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 79
+  m_VersionIndex: 163
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -403,8 +403,8 @@ MonoBehaviour:
   m_Shape:
     rid: 9137337870858846209
   m_ShapeRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_UnmodifiedMeshVersion: 64
-  m_Size: {x: 5, y: 5, z: 0.2}
+  m_UnmodifiedMeshVersion: 163
+  m_Size: {x: 5.04, y: 4.3, z: 0.21}
   m_LocalCenter: {x: 0, y: 0, z: 0}
   references:
     version: 2
@@ -504,6 +504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.WallStructure
   <Data>k__BackingField: {fileID: 11400000, guid: 29be08ce7a0f1f64ba4e134c32b19d05, type: 2}
+  <Shape>k__BackingField: 0
 --- !u!1 &8213843938350967502
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,4 +572,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.BuildingSocket
   <Type>k__BackingField: 0
-  <Structure>k__BackingField: {fileID: 0}
+  <Shape>k__BackingField: 0
