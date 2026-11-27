@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 6311442220314669029}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.FoundationTrianglePlacementHandler
   _data: {fileID: 11400000, guid: ce19fda0821a69c47a3284bc5767393e, type: 2}
+  _events: {fileID: 11400000, guid: a892967159f37b04a829932d8ffe2adf, type: 2}
   _boxSize: {x: 5, y: 5, z: 5}
   _heightSnapStep: 0.25
   _minGroundOffset: -0.5
@@ -71,7 +72,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6818c5a88153b8547aac7234a28ce2bc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6818c5a88153b8547aac7234a28ce2bc, type: 3}
       propertyPath: m_LocalPosition.z

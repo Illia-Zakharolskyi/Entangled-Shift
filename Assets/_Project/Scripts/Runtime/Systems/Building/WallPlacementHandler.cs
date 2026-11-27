@@ -9,11 +9,11 @@ namespace EntangledShift.Systems.Building
         [SerializeField] private List<SocketType> _socketTypes = new() { SocketType.FoundationTop, SocketType.WallTopOutside };
         [SerializeField] private float _animationDuration;
         [SerializeField] private float _dropheight; // how high up the part spawns before it falls
-        private BuildStructure _wallStructure;
+        private BuildStructure _foundation;
+        private BuildingSocket _builtOnSocket = new BuildingSocket();
 
-        public override bool CanPlace(RaycastHit hit, out GameObject targetToConsume)
+        public override bool CanPlace(RaycastHit hit)
         {
-            targetToConsume = null;
             _targetSocket = null;
 
             if (hit.collider.TryGetComponent<BuildStructure>(out var structure) && structure.Data == _data)
@@ -28,6 +28,7 @@ namespace EntangledShift.Systems.Building
                 return false;
             }
 
+            _foundation = socket.transform.root.GetComponentInChildren<BuildStructure>();
             BuildStructure wallStructure = socket.transform.root.GetComponentInChildren<BuildStructure>();
             if (wallStructure == null)
             {
@@ -35,7 +36,7 @@ namespace EntangledShift.Systems.Building
             }
 
             _targetSocket = socket;
-            _wallStructure = wallStructure;
+            _builtOnSocket = socket;
             return true;
         }
 
@@ -57,12 +58,24 @@ namespace EntangledShift.Systems.Building
 
         public override void Build(Vector3 position, Quaternion rotation)
         {
-            if (_targetSocket != null)
+            if (_builtOnSocket != null)
             {
-                _targetSocket.Occupy();
+                _builtOnSocket.Occupy();
             }
 
             GameObject obj = Instantiate(_data.BuildPrefab, position, rotation);
+
+            if (_foundation != null)
+            {
+                _foundation.IsWallBuilt = true;
+            }
+
+            BuildSocketStructure structure = obj.GetComponentInChildren<BuildSocketStructure>();
+            if (structure != null)
+            {
+                structure.BuiltOnSocket = _builtOnSocket;
+            }
+
             Animate(obj, _animationDuration, _dropheight);
         }
     }

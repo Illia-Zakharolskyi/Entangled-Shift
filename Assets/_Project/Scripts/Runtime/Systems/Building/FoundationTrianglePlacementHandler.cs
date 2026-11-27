@@ -15,12 +15,11 @@ namespace EntangledShift.Systems.Building
 
         private bool _customRotation = false;
         private BuildingSocket _socket;
-        private BuildStructure _structure;
         private bool _isBuildStructure;
+        private BuildStructure _structure;
 
-        public override bool CanPlace(RaycastHit hit, out GameObject targetToConsume)
+        public override bool CanPlace(RaycastHit hit)
         {
-            targetToConsume = null;
             _targetSocket = null;
             Vector3 candidatePos;
 
@@ -73,6 +72,8 @@ namespace EntangledShift.Systems.Building
 
                     if (_isBuildStructure && _targetSocket != null)
                     {
+                        if (_structure.Type == StructureType.Wall) continue;
+
                         if (Vector3.Distance(candidatePos, col.transform.position) < _minDistance)
                         {
                             return false;
@@ -98,7 +99,7 @@ namespace EntangledShift.Systems.Building
             {
                 itemPreview.transform.position = _targetSocket.transform.position;
                 itemPreview.transform.rotation = _targetSocket.transform.rotation;
-                itemPreview.transform.localScale = Vector3.one;
+                //itemPreview.transform.localScale = Vector3.one;
             }
             else
             {

@@ -1,5 +1,7 @@
 using EntangledShift.Runtime.Systems;
+using EntangledShift.Systems.Building;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,6 +16,8 @@ namespace EntangledShift.Runtime
 
         [Header("Outline Visuals")]
         [SerializeField] private Material _outlineMaterial;
+        [SerializeField] private string _textName;
+        private TMP_Text _text;
 
         private Ray _ray;
         private RaycastHit _hit;
@@ -27,6 +31,7 @@ namespace EntangledShift.Runtime
         {
             _cameraRay = new Vector3(Screen.width / 2f, Screen.height / 2f);
             _camera = Camera.main;
+            _text = GameObject.Find(_textName).GetComponent<TMP_Text>();
         }
 
         private void Update()
@@ -38,14 +43,24 @@ namespace EntangledShift.Runtime
             if (Physics.Raycast(_ray, out _hit, _range, _mask))
             {
                 newTarget = _hit.transform;
+                var destroyable = newTarget.root.GetComponentInChildren<IDestroyable>();
+                _text.enabled = true;
+                _text.text = destroyable == null ? "" : $"{destroyable.Name}";
 
                 if (Keyboard.current.rKey.wasPressedThisFrame)
                 {
                     ClearOutline();
                     if (AudioController.Instance) AudioController.Instance.PlayOneShotSFXSound(_clip);
-                    Destroy(_hit.collider.gameObject);
+
+
+                    destroyable.Destroy();
+
                     return;
                 }
+            }
+            else
+            {
+                _text.enabled = false;
             }
 
             if (newTarget != _currentTarget)
@@ -58,6 +73,15 @@ namespace EntangledShift.Runtime
                     CreateOutline(_currentTarget);
                 }
             }
+        }
+
+        private void OnDisable()
+        {
+            foreach (GameObject obj in _currentOutlineObjs)
+            {
+                Destroy(obj);
+            }
+            _text.enabled = false;
         }
 
         private void CreateOutline(Transform target)

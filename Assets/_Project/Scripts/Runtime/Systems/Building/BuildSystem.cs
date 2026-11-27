@@ -98,7 +98,6 @@ namespace EntangledShift.Systems.Building
             _itemPreview.SetActive(true);
 
             bool canPlace = false;
-            GameObject targetToConsume = null;
             RaycastHit hit;
 
             bool hasHit = _itemValidator.Raycast(ray, out hit, BuildRange);
@@ -114,7 +113,7 @@ namespace EntangledShift.Systems.Building
 
             if (hasHit)
             {
-                canPlace = _itemValidator.CanPlace(hit, out targetToConsume);
+                canPlace = _itemValidator.CanPlace(hit);
             }
 
             // Apply final placement state (position, socket snap, and valid/invalid color)
@@ -122,20 +121,15 @@ namespace EntangledShift.Systems.Building
 
             if (canPlace && Input.GetMouseButtonDown(0))
             {
-                ExecuteBuild(targetToConsume);
+                ExecuteBuild();
             }
         }
 
-        private void ExecuteBuild(GameObject targetToConsume)
+        private void ExecuteBuild()
         {
             if (!BuildingEnabled)
             {
                 return;
-            }
-
-            if (targetToConsume != null)
-            {
-                Destroy(targetToConsume);
             }
 
             if (AudioController.Instance != null) AudioController.Instance.PlayOneShotSFXSound(_clip);

@@ -8,9 +8,8 @@ namespace EntangledShift.Systems.Building
         [Header("Settings")]
         [SerializeField] private List<SocketType> _socketTypes = new() { SocketType.WallTopInner };
 
-        public override bool CanPlace(RaycastHit hit, out GameObject targetToConsume)
+        public override bool CanPlace(RaycastHit hit)
         {
-            targetToConsume = null;
             _targetSocket = null;
 
             if (hit.collider.TryGetComponent<BuildStructure>(out var structure) && structure.Data == _data)

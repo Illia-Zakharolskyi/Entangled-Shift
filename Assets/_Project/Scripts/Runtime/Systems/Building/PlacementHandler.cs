@@ -7,7 +7,9 @@ namespace EntangledShift.Systems.Building
     {
         [Header("Base")]
         [SerializeField] protected BuildableItemData _data;
+        [SerializeField] protected InventoryEvents _events;
         [SerializeField] protected Vector3 _boxSize;
+        public string Name { get; set; }
 
         [Header("Grid & Terrain Settings")]
         [SerializeField] protected float _heightSnapStep = 1.5f;
@@ -31,7 +33,7 @@ namespace EntangledShift.Systems.Building
             }
         }
 
-        public abstract bool CanPlace(RaycastHit hit, out GameObject targetToConsume);
+        public abstract bool CanPlace(RaycastHit hit);
         public abstract void Build(Vector3 position, Quaternion rotation);
         public abstract void UpdatePreview(GameObject preview, RaycastHit hit, bool canBuild);
 

@@ -10,9 +10,8 @@ namespace EntangledShift.Systems.Building
         [SerializeField] private float _animationDuration;
         [SerializeField] private float _dropheight; // how high up the part spawns before it falls
 
-        public override bool CanPlace(RaycastHit hit, out GameObject targetToConsume)
+        public override bool CanPlace(RaycastHit hit)
         {
-            targetToConsume = null;
             _targetSocket = null;
 
             if (hit.collider.TryGetComponent<BuildStructure>(out var structure) && structure.Data == _data)

@@ -129,6 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cdced66ad87d9641948e19b374f00a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.BuildStructure
-  <Data>k__BackingField: {fileID: 0}
+  _events: {fileID: 11400000, guid: a892967159f37b04a829932d8ffe2adf, type: 2}
+  <Data>k__BackingField: {fileID: 11400000, guid: 77c4c4e468f163042873e41ffed443b9, type: 2}
+  <Type>k__BackingField: 0
   <Shape>k__BackingField: 0
   IsWallBuilt: 0

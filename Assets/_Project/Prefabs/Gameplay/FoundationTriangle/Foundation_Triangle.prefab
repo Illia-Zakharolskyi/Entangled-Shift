@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 940491874158685649}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.125, z: 2.165}
+  m_LocalPosition: {x: 0, y: 0.1, z: 2.165}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -163,7 +163,7 @@ Transform:
   m_GameObject: {fileID: 7137863660483568479}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.86602545, z: 0, w: 0.49999994}
-  m_LocalPosition: {x: 1.25, y: 0.125, z: 0}
+  m_LocalPosition: {x: 1.25, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -299,7 +299,7 @@ Transform:
   m_GameObject: {fileID: 8402191243057046226}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.86602545, z: 0, w: 0.49999994}
-  m_LocalPosition: {x: -1.25, y: 0.125, z: 0}
+  m_LocalPosition: {x: -1.25, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -433,7 +433,7 @@ Transform:
   m_GameObject: {fileID: 8803873907446286081}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -290.41837, y: 0, z: 20845.416}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -626,7 +626,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cdced66ad87d9641948e19b374f00a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Systems.Building.BuildStructure
+  _events: {fileID: 11400000, guid: a892967159f37b04a829932d8ffe2adf, type: 2}
   <Data>k__BackingField: {fileID: 11400000, guid: ce19fda0821a69c47a3284bc5767393e, type: 2}
+  <Type>k__BackingField: 0
   <Shape>k__BackingField: 1
   IsWallBuilt: 0
 --- !u!4 &4445162487252673238 stripped
@@ -658,7 +660,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.02, y: 0.019999996, z: 0.019999998}
+  m_Size: {x: 0.05, y: 0.0025, z: 0.025}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7435645424418896070 stripped
 GameObject:
@@ -684,7 +686,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.020000007, y: 0.020000039, z: 0.020000009}
+  m_Size: {x: 0.05, y: 0.0024, z: 0.025}
   m_Center: {x: -0.0000076293945, y: 0.00012207031, z: 0}
 --- !u!1 &7948370143513645375 stripped
 GameObject:
@@ -710,7 +712,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.020000009, y: 0.020000093, z: 0.020000009}
+  m_Size: {x: 0.05, y: 0.0024, z: 0.025}
   m_Center: {x: 0, y: 0.00012207031, z: 0}
 --- !u!1 &7978489139082905905 stripped
 GameObject:

@@ -12,6 +12,11 @@ namespace EntangledShift.Systems.Building
         {
             IsOccupied = true;
         }
+
+        public void Deoccupy()
+        {
+            IsOccupied = false;
+        }
     }
 
     public enum SocketType

@@ -4,10 +4,8 @@ namespace EntangledShift.Systems.Building
 {
     public class StairPlacementHandler : PlacementHandler
     {
-        public override bool CanPlace(RaycastHit hit, out GameObject targetToConsume)
+        public override bool CanPlace(RaycastHit hit)
         {
-            targetToConsume = null;
-
             if (hit.collider.TryGetComponent<BuildStructure>(out var structure) && structure.Data == _data)
             {
                 return false;

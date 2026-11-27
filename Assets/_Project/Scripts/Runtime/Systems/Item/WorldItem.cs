@@ -12,7 +12,6 @@ public class WorldItem : MonoBehaviour, IMainInteractable
     {
         Data = data;
         Amount = amount;
-
         _events = events;
     }
 
@@ -23,10 +22,7 @@ public class WorldItem : MonoBehaviour, IMainInteractable
 
     public void MainInteract()
     {
-        if (_events != null)
-        {
-            _events.InvokeItemAdd(Data, Amount);
-        }
+        _events.InvokeItemAdd(Data, Amount);
 
         Destroy(this.gameObject);
     }
@@ -36,11 +32,6 @@ public interface IMainInteractable
 {
     string GetPrompt();
     void MainInteract();
-}
-
-public interface ISecondInteractable
-{
-    void SecondInteract();
 }
 
 public interface IItemContainer

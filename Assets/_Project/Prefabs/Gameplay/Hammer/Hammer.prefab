@@ -47,10 +47,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EntangledShift.Hammer
   _mask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1536
   _range: 10
   _clip: {fileID: 8300000, guid: cf2361f4d86018c45926aec63f77f088, type: 3}
   _outlineMaterial: {fileID: 2100000, guid: 881cf82c3a10df64892d1896117fce0b, type: 2}
+  _textName: HammerHint
 --- !u!1 &9021151296955087512
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,8 @@
-using UnityEngine;
 using EntangledShift.Runtime.Systems;
+using EntangledShift.Systems.Building;
+using UnityEngine;
 
-public class Chest : MonoBehaviour, IMainInteractable, ISecondInteractable, IItemContainer
+public class Chest : MonoBehaviour, IMainInteractable, IItemContainer, IDestroyable
 {
     [Header("References")]
     [SerializeField] private GameObject _chestPanel;
@@ -19,6 +20,7 @@ public class Chest : MonoBehaviour, IMainInteractable, ISecondInteractable, IIte
 
     [Header("Settings")]
     [SerializeField] private int _capacity = 15;
+    public string Name { get; private set; }
 
     private InventorySlot[] _slots;
     private InventorySlotUI[] _slotsUI;
@@ -26,6 +28,7 @@ public class Chest : MonoBehaviour, IMainInteractable, ISecondInteractable, IIte
 
     private void Awake()
     {
+        Name = _chestItemData.ShowName;
         ChestData data = FindAnyObjectByType<ChestData>();
         if (data != null)
         {
@@ -44,7 +47,7 @@ public class Chest : MonoBehaviour, IMainInteractable, ISecondInteractable, IIte
     #region IInteractable Implementation
     public string GetPrompt()
     {
-        return _isOpen ? "'E' Close" : "'E' Open || 'F' Pick Up";
+        return _isOpen ? "'E' Close" : "'E' Open";
     }
 
     public void MainInteract()
@@ -65,47 +68,24 @@ public class Chest : MonoBehaviour, IMainInteractable, ISecondInteractable, IIte
             if (_events != null) _events.InvokeChestClose();
         }
 
-        AudioController.Instance.PlayOneShotSFXSound(_audio);
+        if (AudioController.Instance) AudioController.Instance.PlayOneShotSFXSound(_audio);
         _chestEvents.InvokeChestInteract(this);
     }
+    #endregion
 
-    public void SecondInteract()
+    public void Destroy()
     {
-        if (_isOpen)
-        {
-            _isOpen = false;
-            if (_chestPanel != null) _chestPanel.SetActive(false);
-            if (_events != null) _events.InvokeChestClose();
-        }
-
         foreach (InventorySlot slot in _slots)
         {
-            if (slot != null && !slot.IsEmpty)
-            {
-                Vector3 spawnPosition = transform.position + Vector3.up * 0.5f + Random.insideUnitSphere * 0.3f;
-
-                if (slot.item != null)
-                {
-                    GameObject spawnedObject = Instantiate(slot.item.PrefabToDrop, spawnPosition, Quaternion.identity);
-
-                    if (spawnedObject.TryGetComponent<WorldItem>(out WorldItem worldItem))
-                    {
-                        worldItem.Init(slot.item, slot.amount, _inventEvents);
-                    }
-                }
-
-                slot.Clear();
-            }
+            if (slot.item == null) continue;
+            GameObject obj = Instantiate(slot.item.PrefabToDrop, transform.position, Quaternion.identity, transform.parent);
+            obj.AddComponent<WorldItem>();
+            WorldItem i = obj.GetComponent<WorldItem>();
+            i.Init(slot.item, slot.amount, _inventEvents);
+            RemoveItemIndex(slot.index);
         }
-
-        if (_inventEvents != null && _chestItemData != null)
-        {
-            _inventEvents.InvokeItemAdd(_chestItemData, 1);
-        }
-
         Destroy(gameObject);
     }
-    #endregion
 
     private void BindAndRefreshUI()
     {
